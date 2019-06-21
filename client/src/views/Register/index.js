@@ -53,6 +53,16 @@ const Register = props => {
             fullWidth
             required
           />
+          <TextField
+            type='password'
+            variant='outlined'
+            margin='normal'
+            id='confirmPassword'
+            name='password'
+            label='Confirm password'
+            fullWidth
+            required
+          />
           <Button
             type='submit'
             variant='contained'
