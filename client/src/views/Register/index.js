@@ -32,7 +32,14 @@ const Register = props => {
             label='Username'
             fullWidth
             required
+            error={props.usernameError}
           />
+          {props.usernameError ? (
+            <Typography className={classes.hint} hidden={!props.usernameError}>
+              {props.usernameError}
+            </Typography>
+          ) : null}
+
           <TextField
             type='email'
             variant='outlined'
@@ -42,7 +49,14 @@ const Register = props => {
             label='Email'
             fullWidth
             required
+            error={props.emailError}
           />
+          {props.emailError ? (
+            <Typography className={classes.hint} hidden={!props.emailError}>
+              {props.emailError}
+            </Typography>
+          ) : null}
+
           <TextField
             type='password'
             variant='outlined'
@@ -52,7 +66,14 @@ const Register = props => {
             label='Password'
             fullWidth
             required
+            error={props.passwordError}
           />
+          {props.passwordError ? (
+            <Typography className={classes.hint} hidden={!props.passwordError}>
+              {props.passwordError}
+            </Typography>
+          ) : null}
+
           <TextField
             type='password'
             variant='outlined'
@@ -62,7 +83,14 @@ const Register = props => {
             label='Confirm password'
             fullWidth
             required
+            error={props.confirmError}
           />
+          {props.confirmError ? (
+            <Typography className={classes.hint} hidden={!props.confirmError}>
+              {props.confirmError}
+            </Typography>
+          ) : null}
+
           <Button
             type='submit'
             variant='contained'
@@ -72,6 +100,7 @@ const Register = props => {
             onClick={props.signup}>
             Sign up
           </Button>
+
           <Grid container>
             <Grid item>
               <Link to='/register' variant='body2' className={classes.link}>
@@ -87,6 +116,10 @@ const Register = props => {
 
 Register.propTypes = {
   signup: PropTypes.func.isRequired,
+  usernameError: PropTypes.string,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
+  confirmError: PropTypes.string,
 };
 
 export default Register;

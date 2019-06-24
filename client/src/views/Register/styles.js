@@ -25,7 +25,7 @@ export const useStyles = makeStyles(theme => ({
   hint: {
     textAlign: 'left',
     fontSize: '14px',
-    color: theme.palette.error,
+    color: theme.palette.error.main,
   },
   link: {
     color: theme.palette.primary.dark,
