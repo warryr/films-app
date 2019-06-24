@@ -1,13 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { validate } from 'express-jsonschema';
+import checkIfUnique from '../middleware/checkIfUnique';
 
 import userSchema from '../schemas/user';
 import User from '../models/user';
 
 const router = express.Router();
 
-router.post('/register', validate({ body: userSchema }), async (req, res, next) => {
+router.post('/register', validate({ body: userSchema }), checkIfUnique, async (req, res, next) => {
   const user = new User({ _id: mongoose.Types.ObjectId(), ...req.body });
   await user.encryptPassword();
 
