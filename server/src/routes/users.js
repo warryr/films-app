@@ -10,19 +10,15 @@ const router = express.Router();
 
 router.post('/register', validate({ body: userSchema }), async (req, res, next) => {
   req.body.password = await bcrypt.hash(req.body.password, 10);
-  User.create(
-    {
-      _id: mongoose.Types.ObjectId(),
-      ...req.body,
-    },
-    (err, user) => {
-      if (err) throw err;
-      res.send({
-        username: user.username,
-        email: user.email,
-      });
-    }
-  );
+  await User.create({ _id: mongoose.Types.ObjectId(), ...req.body })
+    .then(user => res.send({ username: user.username, email: user.email }))
+    .catch(err => {
+      if (err.name === 'ValidationError') {
+        res.status(422).send(err.errors);
+      } else {
+        res.status(500).json(err);
+      }
+    });
 });
 
 router.use((err, req, res, next) => {
@@ -30,7 +26,6 @@ router.use((err, req, res, next) => {
     const errors = {};
     err.validations.body.map(object => (errors[object.property] = object.messages[0]));
     res.status(400).send(err.validations);
-    l;
   } else {
     next(err);
   }
