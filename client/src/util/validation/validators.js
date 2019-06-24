@@ -38,7 +38,7 @@ export const textFieldLength = (value, fieldName, minLength) => {
 };
 
 export const emailPattern = (value, fieldName) => {
-  const valid = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(value);
+  const valid = /^[A-Za-z0-9._%+-]+@[a-z0-9.]+.[a-z]{2,4}$/.test(value);
   return valid ? getValidObject(fieldName) : getErrorObject('Enter full email address', fieldName);
 };
 
