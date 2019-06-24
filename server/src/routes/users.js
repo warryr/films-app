@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 import { validate } from 'express-jsonschema';
 
 import userSchema from '../schemas/user';
@@ -9,8 +8,11 @@ import User from '../models/user';
 const router = express.Router();
 
 router.post('/register', validate({ body: userSchema }), async (req, res, next) => {
-  req.body.password = await bcrypt.hash(req.body.password, 10);
-  await User.create({ _id: mongoose.Types.ObjectId(), ...req.body })
+  const user = new User({ _id: mongoose.Types.ObjectId(), ...req.body });
+  await user.encryptPassword();
+
+  await user
+    .save()
     .then(user => res.send({ username: user.username, email: user.email }))
     .catch(err => {
       if (err.name === 'ValidationError') {
