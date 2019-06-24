@@ -1,9 +1,16 @@
-import { requiredField, confirmPassword, validateFields } from './validators';
+import {
+  requiredField,
+  confirmPassword,
+  textFieldLength,
+  emailPattern,
+  validateFields,
+  strictSymbols,
+} from './validators';
 
 const getRegisterRules = user => [
-  () => requiredField(user.username, 'username'),
-  () => requiredField(user.email, 'email'),
-  () => requiredField(user.password, 'password'),
+  () => requiredField(user.username, 'username', strictSymbols, textFieldLength, 6),
+  () => requiredField(user.email, 'email', emailPattern),
+  () => requiredField(user.password, 'password', textFieldLength, 6),
   () => requiredField(user.confirmPassword, 'confirmPassword', confirmPassword, user.password),
 ];
 

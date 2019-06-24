@@ -9,7 +9,7 @@ const userSchema = {
     email: {
       type: 'string',
       required: true,
-      pattern: '/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$/',
+      pattern: '/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/',
     },
     password: {
       type: 'string',
