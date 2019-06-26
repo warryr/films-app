@@ -6,7 +6,7 @@ const registerUser = async user => {
       body: JSON.stringify(user),
     });
     if (response.status !== 200) {
-      // how to throw an error ??
+      throw new Error();
     }
     const data = await response.json();
     return {
@@ -17,7 +17,7 @@ const registerUser = async user => {
       code: response.status,
     };
   } catch (err) {
-    console.log(err);
+    console.log('catch block');
 
     switch (err.status) {
       case 400: {

@@ -10,7 +10,7 @@ function* registerWatcher() {
 
 function* registerFlow(action) {
   try {
-    const { user } = action;
+    const user = action.payload;
     const response = yield call(registerApi.registerUser, user);
     yield put(registerUserSucceeded(response.user, response.code));
   } catch (error) {

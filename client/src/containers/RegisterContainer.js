@@ -22,6 +22,8 @@ class RegisterContainer extends React.Component {
 
     if (valid) {
       this.props.registerUser(user);
+
+      console.log(this.props.errors);
     }
   };
 
