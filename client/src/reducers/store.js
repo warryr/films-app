@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import currentUserReducer from './currentUserReducer';
 import validationReducer from './validationReducer';
@@ -12,7 +12,13 @@ const rootReducer = combineReducers({
 });
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+const composeSetup =
+  process.env.NODE_ENV !== 'production' && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : compose;
+
+const store = createStore(rootReducer, composeSetup(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(IndexSaga);
 

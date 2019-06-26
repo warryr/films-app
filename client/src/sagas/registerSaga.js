@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { registerUserSucceeded, registerUserFailed } from '../actions/actionCreators';
 import { USER_REGISTER_REQUESTED } from '../actions/actionTypes';
-import registerApi from '../apiRequests/register';
+import axios from 'axios';
 
 function* registerWatcher() {
   console.log('Watching...');
@@ -10,11 +10,29 @@ function* registerWatcher() {
 
 function* registerFlow(action) {
   try {
-    const user = action.payload;
-    const response = yield call(registerApi.registerUser, user);
-    yield put(registerUserSucceeded(response.user, response.code));
-  } catch (error) {
-    yield put(registerUserFailed(error.status, error.errors));
+    const response = yield call(axios, '/api/users/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: action.payload,
+    });
+    yield put(registerUserSucceeded({ username: response.username, email: response.email }, response.status));
+  } catch (err) {
+    const errors = {};
+
+    if (err.response.status === 409) {
+      if (err.response.data.includes('username')) {
+        errors.username = 'Username is taken';
+      }
+      if (err.response.data.includes('email')) {
+        errors.email = 'Email address is already used for another account';
+      }
+    } else {
+      for (let key in err.response.data) {
+        errors[key] = err.response.data[key];
+      }
+    }
+
+    yield put(registerUserFailed(err.response.status, errors));
   }
 }
 
