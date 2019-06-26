@@ -32,7 +32,7 @@ const Register = props => {
             label='Username'
             fullWidth
             required
-            error={props.usernameError}
+            error={!!props.usernameError}
           />
           {props.usernameError ? (
             <Typography className={classes.hint} hidden={!props.usernameError}>
@@ -49,7 +49,7 @@ const Register = props => {
             label='Email'
             fullWidth
             required
-            error={props.emailError}
+            error={!!props.emailError}
           />
           {props.emailError ? (
             <Typography className={classes.hint} hidden={!props.emailError}>
@@ -66,7 +66,7 @@ const Register = props => {
             label='Password'
             fullWidth
             required
-            error={props.passwordError}
+            error={!!props.passwordError}
           />
           {props.passwordError ? (
             <Typography className={classes.hint} hidden={!props.passwordError}>
@@ -83,7 +83,7 @@ const Register = props => {
             label='Confirm password'
             fullWidth
             required
-            error={props.confirmError}
+            error={!!props.confirmError}
           />
           {props.confirmError ? (
             <Typography className={classes.hint} hidden={!props.confirmError}>

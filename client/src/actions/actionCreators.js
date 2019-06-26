@@ -1,20 +1,43 @@
-import { userActionTypes } from './actionTypes';
+import {
+  REGISTER_VALIDATION_SET,
+  LOGIN_VALIDATION_SET,
+  CURRENT_USER_SET,
+  CURRENT_USER_UNSET,
+  USER_REGISTER_FAILED,
+  USER_REGISTER_REQUESTED,
+  USER_REGISTER_SUCCEEDED,
+} from './actionTypes';
 
 export const setRegisterValidation = validation => ({
-  type: userActionTypes.SET_REGISTER_VALIDATION,
+  type: REGISTER_VALIDATION_SET,
   payload: validation,
 });
 
 export const setLoginValidation = validation => ({
-  type: userActionTypes.SET_LOGIN_VALIDATION,
+  type: LOGIN_VALIDATION_SET,
   payload: validation,
 });
 
-export const setCurrentUser = user => ({
-  type: userActionTypes.SET_CURRENT_USER,
+export const registerUserRequested = user => ({
+  type: USER_REGISTER_REQUESTED,
   payload: user,
 });
 
-export const cleanCurrentUser = () => ({
-  type: userActionTypes.CLEAN_CURRENT_USER,
+export const registerUserSucceeded = (user, code) => ({
+  type: USER_REGISTER_SUCCEEDED,
+  payload: { user, code },
+});
+
+export const registerUserFailed = (code, errors) => ({
+  type: USER_REGISTER_FAILED,
+  payload: { code, errors },
+});
+
+export const setCurrentUser = user => ({
+  type: CURRENT_USER_SET,
+  payload: user,
+});
+
+export const unsetCurrentUser = () => ({
+  type: CURRENT_USER_UNSET,
 });

@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Register from '../views/Register';
 import validate from '../util/validation/validateRegister';
-import { registerUser } from '../apiRequests/register';
-import { setRegisterValidation } from '../actions/actionCreators';
+import { setRegisterValidation, registerUserRequested } from '../actions/actionCreators';
 
 class RegisterContainer extends React.Component {
   handleSignUp = async e => {
@@ -21,14 +20,8 @@ class RegisterContainer extends React.Component {
 
     const valid = validate({ ...user, confirmPassword }, this.props.setValidation);
 
-    if (!valid) {
-      console.log(this.props.errors);
-    }
-
     if (valid) {
-      const data = await registerUser(user);
-      console.log(data);
-      // redirect
+      this.props.registerUser(user);
     }
   };
 
@@ -36,21 +29,24 @@ class RegisterContainer extends React.Component {
     return (
       <Register
         signup={this.handleSignUp}
-        usernameError={this.props.errors.username}
-        emailError={this.props.errors.email}
-        passwordError={this.props.errors.password}
-        confirmError={this.props.errors.confirmPassword}
+        usernameError={this.props.validationErrors.username}
+        emailError={this.props.validationErrors.email}
+        passwordError={this.props.validationErrors.password}
+        confirmError={this.props.validationErrors.confirmPassword}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  errors: state.user.registerValidation.errors || {},
+  validationErrors: state.validation.registerValidation.errors || {},
+  registerCode: state.register.code,
+  registerErrors: state.register.errors,
 });
 
 const mapDispatchToProps = dispatch => ({
   setValidation: validation => dispatch(setRegisterValidation(validation)),
+  registerUser: user => dispatch(registerUserRequested(user)),
 });
 
 export default connect(
