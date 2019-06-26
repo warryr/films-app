@@ -34,11 +34,7 @@ const Register = props => {
             required
             error={!!props.usernameError}
           />
-          {props.usernameError ? (
-            <Typography className={classes.hint} hidden={!props.usernameError}>
-              {props.usernameError}
-            </Typography>
-          ) : null}
+          {props.usernameError ? <Typography className={classes.fieldHint}>{props.usernameError}</Typography> : null}
 
           <TextField
             type='email'
@@ -51,11 +47,7 @@ const Register = props => {
             required
             error={!!props.emailError}
           />
-          {props.emailError ? (
-            <Typography className={classes.hint} hidden={!props.emailError}>
-              {props.emailError}
-            </Typography>
-          ) : null}
+          {props.emailError ? <Typography className={classes.fieldHint}>{props.emailError}</Typography> : null}
 
           <TextField
             type='password'
@@ -68,11 +60,7 @@ const Register = props => {
             required
             error={!!props.passwordError}
           />
-          {props.passwordError ? (
-            <Typography className={classes.hint} hidden={!props.passwordError}>
-              {props.passwordError}
-            </Typography>
-          ) : null}
+          {props.passwordError ? <Typography className={classes.fieldHint}>{props.passwordError}</Typography> : null}
 
           <TextField
             type='password'
@@ -85,11 +73,15 @@ const Register = props => {
             required
             error={!!props.confirmError}
           />
-          {props.confirmError ? (
-            <Typography className={classes.hint} hidden={!props.confirmError}>
-              {props.confirmError}
-            </Typography>
-          ) : null}
+          {props.confirmError ? <Typography className={classes.fieldHint}>{props.confirmError}</Typography> : null}
+
+          {props.registerErrors
+            ? props.registerErrors.map((error, index) => (
+                <Typography key={index} className={classes.formHint}>
+                  {error}
+                </Typography>
+              ))
+            : null}
 
           <Button
             type='submit'
@@ -120,6 +112,7 @@ Register.propTypes = {
   emailError: PropTypes.string,
   passwordError: PropTypes.string,
   confirmError: PropTypes.string,
+  registerErrors: PropTypes.array,
 };
 
 export default Register;

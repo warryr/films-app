@@ -3,8 +3,7 @@ import { USER_REGISTER_REQUESTED, USER_REGISTER_SUCCEEDED, USER_REGISTER_FAILED 
 const initialState = {
   user: {},
   code: 0,
-  message: '',
-  errors: {},
+  errors: [],
 };
 
 const registerReducer = (state = initialState, action) => {
@@ -18,14 +17,12 @@ const registerReducer = (state = initialState, action) => {
       return {
         user: action.payload.user,
         code: action.payload.code,
-        message: 'Successfully registered!',
       };
     }
     case USER_REGISTER_FAILED: {
       return {
         code: action.payload.code,
-        message: 'Error occurred during registration',
-        errors: action.payload.errors,
+        errors: [...action.payload.errors],
       };
     }
     default: {

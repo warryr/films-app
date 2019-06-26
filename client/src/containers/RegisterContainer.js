@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Register from '../views/Register';
 import validate from '../util/validation/validateRegister';
 import { setRegisterValidation, registerUserRequested } from '../actions/actionCreators';
 
 class RegisterContainer extends React.Component {
-  handleSignUp = async e => {
+  handleSignUp = e => {
     e.preventDefault();
     const username = document.getElementById('registerUsername').value;
     const email = document.getElementById('registerEmail').value;
@@ -22,19 +23,20 @@ class RegisterContainer extends React.Component {
 
     if (valid) {
       this.props.registerUser(user);
-
-      console.log(this.props.errors);
     }
   };
 
   render() {
-    return (
+    return this.props.registerCode === 200 ? (
+      <Redirect to='/login' />
+    ) : (
       <Register
         signup={this.handleSignUp}
         usernameError={this.props.validationErrors.username}
         emailError={this.props.validationErrors.email}
         passwordError={this.props.validationErrors.password}
         confirmError={this.props.validationErrors.confirmPassword}
+        registerErrors={this.props.registerErrors}
       />
     );
   }

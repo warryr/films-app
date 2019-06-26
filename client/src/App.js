@@ -7,6 +7,7 @@ function App() {
   return (
     <div className='App'>
       <Router basename={process.env.PUBLIC_URL}>
+        <Route path='/login' component={LoginContainer} />
         <Route path='/register' component={RegisterContainer} />
       </Router>
     </div>

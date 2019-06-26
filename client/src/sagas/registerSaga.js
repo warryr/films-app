@@ -1,7 +1,8 @@
+import React from 'react';
+import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { registerUserSucceeded, registerUserFailed } from '../actions/actionCreators';
 import { USER_REGISTER_REQUESTED } from '../actions/actionTypes';
-import axios from 'axios';
 
 function* registerWatcher() {
   console.log('Watching...');
@@ -17,18 +18,18 @@ function* registerFlow(action) {
     });
     yield put(registerUserSucceeded({ username: response.username, email: response.email }, response.status));
   } catch (err) {
-    const errors = {};
+    const errors = [];
 
     if (err.response.status === 409) {
       if (err.response.data.includes('username')) {
-        errors.username = 'Username is taken';
+        errors.push('Username is taken');
       }
       if (err.response.data.includes('email')) {
-        errors.email = 'Email address is already used for another account';
+        errors.push('Email address is already used for another account');
       }
     } else {
       for (let key in err.response.data) {
-        errors[key] = err.response.data[key];
+        errors.push(err.response.data[key]);
       }
     }
 

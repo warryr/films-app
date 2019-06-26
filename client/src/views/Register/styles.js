@@ -23,10 +23,16 @@ export const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0),
   },
-  hint: {
+  fieldHint: {
     textAlign: 'left',
     fontSize: '14px',
     color: theme.palette.error.main,
+  },
+  formHint: {
+    marginTop: theme.spacing(1),
+    textAlign: 'left',
+    fontSize: '14px',
+    color: theme.palette.common.black,
   },
   link: {
     color: theme.palette.primary.dark,
