@@ -27,9 +27,7 @@ class RegisterContainer extends React.Component {
   };
 
   render() {
-    return this.props.registerCode === 200 ? (
-      <Redirect to='/login' />
-    ) : (
+    return (
       <Register
         signup={this.handleSignUp}
         usernameError={this.props.validationErrors.username}

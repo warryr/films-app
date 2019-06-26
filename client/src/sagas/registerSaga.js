@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { push } from 'react-router-redux';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { registerUserSucceeded, registerUserFailed } from '../actions/actionCreators';
 import { USER_REGISTER_REQUESTED } from '../actions/actionTypes';
@@ -17,6 +18,7 @@ function* registerFlow(action) {
       data: action.payload,
     });
     yield put(registerUserSucceeded({ username: response.username, email: response.email }, response.status));
+    yield put(push('/login'));
   } catch (err) {
     const errors = [];
 
