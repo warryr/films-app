@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.post('/register', validate({ body: userSchema }), async (req, res, next) => {
   const user = new User({ _id: mongoose.Types.ObjectId(), ...req.body });
-  await user.encryptPassword();
 
   await user
     .save()
