@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeProvider } from '@material-ui/styles';
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import { store } from './reducers/store';
-import { ThemeProvider } from '@material-ui/styles';
+import { store, persistor } from './reducers/store';
 import theme from './theme';
+import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <PersistGate persistor={persistor}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

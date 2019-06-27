@@ -1,12 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
-import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import IndexSaga from '../sagas/indexSaga';
-import rootReducer from './rootReducer';
+import createRootReducer from './rootReducer';
 
-export const history = createBrowserHistory();
-
+const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 
 const composeSetup =
@@ -14,9 +16,18 @@ const composeSetup =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
-export const store = createStore(
-  rootReducer(history),
-  composeSetup(applyMiddleware(routerMiddleware(history), sagaMiddleware))
-);
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['currentUser'],
+};
+
+const rootReducer = createRootReducer(history);
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, composeSetup(applyMiddleware(routerMiddleware(history), sagaMiddleware)));
+const persistor = persistStore(store);
 
 sagaMiddleware.run(IndexSaga);
+
+export { history, store, persistor };
