@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { validate } from 'express-jsonschema';
+import { encryptData, decryptData } from '../util/encryption';
 
 import userSchema from '../schemas/user';
 import User from '../models/user';
@@ -9,7 +10,6 @@ const router = express.Router();
 
 router.post('/register', validate({ body: userSchema }), async (req, res, next) => {
   const user = new User({ _id: mongoose.Types.ObjectId(), ...req.body });
-  await user.encryptPassword();
 
   await user
     .save()
