@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+import { encryptData } from '../util/encryption';
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.ObjectId,
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function() {
-  this.password = await bcrypt.hash(this.password, 10);
+  this.password = await encryptData(this.password);
 });
 
 userSchema.methods.comparePassword = async function(password) {
