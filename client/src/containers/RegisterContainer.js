@@ -40,7 +40,6 @@ class RegisterContainer extends React.Component {
 
 const mapStateToProps = state => ({
   validationErrors: state.validation.registerValidation.errors || {},
-  registerCode: state.register.code,
   registerErrors: state.register.errors,
 });
 

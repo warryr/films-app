@@ -1,28 +1,21 @@
+import { handleActions } from 'redux-actions';
 import { REGISTER_VALIDATION_SET, LOGIN_VALIDATION_SET } from '../actions/actionTypes';
 
-const initialState = {
-  registerValidation: {},
-  loginValidation: {},
-};
-
-const validationReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REGISTER_VALIDATION_SET: {
-      return {
-        ...state,
-        registerValidation: action.payload,
-      };
-    }
-    case LOGIN_VALIDATION_SET: {
-      return {
-        ...state,
-        loginValidation: action.payload,
-      };
-    }
-    default: {
-      return state;
-    }
+const validationReducer = handleActions(
+  {
+    [REGISTER_VALIDATION_SET]: (state, action) => ({
+      ...state,
+      registerValidation: action.payload,
+    }),
+    [LOGIN_VALIDATION_SET]: (state, action) => ({
+      ...state,
+      loginValidation: action.payload,
+    }),
+  },
+  {
+    registerValidation: {},
+    loginValidation: {},
   }
-};
+);
 
 export default validationReducer;

@@ -1,3 +1,4 @@
+import { createAction } from 'redux-actions';
 import {
   REGISTER_VALIDATION_SET,
   LOGIN_VALIDATION_SET,
@@ -8,36 +9,12 @@ import {
   USER_REGISTER_SUCCEEDED,
 } from './actionTypes';
 
-export const setRegisterValidation = validation => ({
-  type: REGISTER_VALIDATION_SET,
-  payload: validation,
-});
+export const setRegisterValidation = createAction(REGISTER_VALIDATION_SET);
+export const setLoginValidation = createAction(LOGIN_VALIDATION_SET);
 
-export const setLoginValidation = validation => ({
-  type: LOGIN_VALIDATION_SET,
-  payload: validation,
-});
+export const registerUserRequested = createAction(USER_REGISTER_REQUESTED);
+export const registerUserSucceeded = createAction(USER_REGISTER_SUCCEEDED);
+export const registerUserFailed = createAction(USER_REGISTER_FAILED);
 
-export const registerUserRequested = user => ({
-  type: USER_REGISTER_REQUESTED,
-  payload: user,
-});
-
-export const registerUserSucceeded = (user, code) => ({
-  type: USER_REGISTER_SUCCEEDED,
-  payload: { user, code },
-});
-
-export const registerUserFailed = (code, errors) => ({
-  type: USER_REGISTER_FAILED,
-  payload: { code, errors },
-});
-
-export const setCurrentUser = user => ({
-  type: CURRENT_USER_SET,
-  payload: user,
-});
-
-export const unsetCurrentUser = () => ({
-  type: CURRENT_USER_UNSET,
-});
+export const setCurrentUser = createAction(CURRENT_USER_SET);
+export const unsetCurrentUser = createAction(CURRENT_USER_UNSET);
