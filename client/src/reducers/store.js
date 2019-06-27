@@ -1,17 +1,11 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import createSagaMiddleware from 'redux-saga';
-import { reducer as formReducer } from 'redux-form';
-import currentUserReducer from './currentUserReducer';
-import validationReducer from './validationReducer';
-import registerReducer from './registerReducer';
 import IndexSaga from '../sagas/registerSaga';
+import rootReducer from './rootReducer';
 
-const rootReducer = combineReducers({
-  currentUser: currentUserReducer,
-  validation: validationReducer,
-  register: registerReducer,
-  form: formReducer,
-});
+export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,8 +14,9 @@ const composeSetup =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
-const store = createStore(rootReducer, composeSetup(applyMiddleware(sagaMiddleware)));
+export const store = createStore(
+  rootReducer(history),
+  composeSetup(applyMiddleware(routerMiddleware(history), sagaMiddleware))
+);
 
 sagaMiddleware.run(IndexSaga);
-
-export default store;
