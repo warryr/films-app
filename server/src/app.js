@@ -28,11 +28,32 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  res.status(err.status || 500);
-  res.render('error');
+  switch (err.name) {
+    case 'JsonSchemaValidation': {
+      const errors = {};
+      err.validations.body.map(object => (errors[object.property] = object.messages[0]));
+      res.status(400).send(errors);
+      break;
+    }
+    case 'ValidationError': {
+      const errors = {};
+      for (let field in err.errors) {
+        errors[field] = err.errors[field].message;
+      }
+      res.status(422).send(errors);
+      break;
+    }
+    case 'MongoError': {
+      const message = err.errmsg;
+      res.status(409).send(message);
+      break;
+    }
+    default: {
+      res.locals.message = err.message;
+      res.locals.error = req.app.get('env') === 'development' ? err : {};
+      res.status(500).send(err);
+    }
+  }
 });
 
 module.exports = app;
