@@ -6,7 +6,6 @@ import { USER_REGISTER_REQUESTED } from '../actions/actionTypes';
 import { history } from '../reducers/store';
 
 function* registerWatcher() {
-  console.log('Watching...');
   yield takeLatest(USER_REGISTER_REQUESTED, registerFlow);
 }
 
