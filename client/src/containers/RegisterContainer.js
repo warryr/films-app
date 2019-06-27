@@ -1,17 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import Register from '../views/Register';
+import RegisterForm from '../views/Register';
 import validate from '../util/validation/validateRegister';
 import { setRegisterValidation, registerUserRequested } from '../actions/actionCreators';
 
 class RegisterContainer extends React.Component {
-  handleSignUp = e => {
-    e.preventDefault();
-    const username = document.getElementById('registerUsername').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+  handleSignUp = values => {
+    const username = values.username;
+    const email = values.email;
+    const password = values.password;
+    const confirmPassword = values.confirmPassword;
 
     const user = {
       username,
@@ -28,8 +26,8 @@ class RegisterContainer extends React.Component {
 
   render() {
     return (
-      <Register
-        signup={this.handleSignUp}
+      <RegisterForm
+        onSubmit={this.handleSignUp}
         usernameError={this.props.validationErrors.username}
         emailError={this.props.validationErrors.email}
         passwordError={this.props.validationErrors.password}

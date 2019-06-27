@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 import { useStyles } from './styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -10,6 +11,10 @@ import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
+const renderTextField = ({ input, ...custom }) => {
+  return <TextField variant='outlined' margin='normal' {...input} {...custom} required fullWidth />;
+};
 
 const Register = props => {
   const classes = useStyles();
@@ -23,55 +28,43 @@ const Register = props => {
         <Typography component='h1' variant='h5'>
           Sign up
         </Typography>
-        <form id='registerForm' className={classes.form} noValidate>
-          <TextField
-            variant='outlined'
-            margin='normal'
+        <form id='registerForm' className={classes.form} onSubmit={props.handleSubmit} noValidate>
+          <Field
             id='registerUsername'
             name='username'
             label='Username'
-            fullWidth
-            required
             error={!!props.usernameError}
+            component={renderTextField}
           />
           {props.usernameError ? <Typography className={classes.fieldHint}>{props.usernameError}</Typography> : null}
 
-          <TextField
+          <Field
             type='email'
-            variant='outlined'
-            margin='normal'
             id='registerEmail'
             name='email'
             label='Email'
-            fullWidth
-            required
             error={!!props.emailError}
+            component={renderTextField}
           />
           {props.emailError ? <Typography className={classes.fieldHint}>{props.emailError}</Typography> : null}
 
-          <TextField
+          <Field
             type='password'
-            variant='outlined'
-            margin='normal'
             id='registerPassword'
             name='password'
             label='Password'
-            fullWidth
-            required
             error={!!props.passwordError}
+            component={renderTextField}
           />
           {props.passwordError ? <Typography className={classes.fieldHint}>{props.passwordError}</Typography> : null}
 
-          <TextField
+          <Field
             type='password'
-            variant='outlined'
-            margin='normal'
             id='confirmPassword'
-            name='password'
+            name='confirmPassword'
             label='Confirm password'
-            fullWidth
-            required
             error={!!props.confirmError}
+            component={renderTextField}
           />
           {props.confirmError ? <Typography className={classes.fieldHint}>{props.confirmError}</Typography> : null}
 
@@ -83,13 +76,7 @@ const Register = props => {
               ))
             : null}
 
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            fullWidth
-            className={classes.submit}
-            onClick={props.signup}>
+          <Button type='submit' variant='contained' color='primary' fullWidth className={classes.submit}>
             Sign up
           </Button>
 
@@ -107,7 +94,7 @@ const Register = props => {
 };
 
 Register.propTypes = {
-  signup: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
   usernameError: PropTypes.string,
   emailError: PropTypes.string,
   passwordError: PropTypes.string,
@@ -115,4 +102,8 @@ Register.propTypes = {
   registerErrors: PropTypes.array,
 };
 
-export default Register;
+const RegisterForm = reduxForm({
+  form: 'registerForm',
+})(Register);
+
+export default RegisterForm;

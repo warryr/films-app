@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { reducer as formReducer } from 'redux-form';
 import currentUserReducer from './currentUserReducer';
 import validationReducer from './validationReducer';
 import registerReducer from './registerReducer';
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   validation: validationReducer,
   register: registerReducer,
+  form: formReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
