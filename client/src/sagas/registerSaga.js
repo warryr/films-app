@@ -16,7 +16,7 @@ function* registerFlow(action) {
       headers: { 'Content-Type': 'application/json' },
       data: action.payload,
     });
-    yield put(registerUserSucceeded({ username: response.username, email: response.email }));
+    yield put(registerUserSucceeded({ username: response.data.username, email: response.data.email }));
     yield call(history.push, '/login');
   } catch (err) {
     const errors = [];
