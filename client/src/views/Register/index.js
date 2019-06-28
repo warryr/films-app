@@ -11,7 +11,6 @@ import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import LoginContainer from '../../containers/LoginContainer';
 
 const renderTextField = ({ input, ...custom }) => {
   return <TextField variant='outlined' margin='normal' {...input} {...custom} required fullWidth />;
