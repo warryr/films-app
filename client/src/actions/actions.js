@@ -7,5 +7,8 @@ export const registerUserRequested = createAction('USER_REGISTER_REQUESTED');
 export const registerUserSucceeded = createAction('USER_REGISTER_SUCCEEDED');
 export const registerUserFailed = createAction('USER_REGISTER_FAILED');
 
+export const loginUserRequested = createAction('USER_LOGIN_REQUESTED');
+export const loginUserFailed = createAction('USER_LOGIN_FAILED');
+
 export const setCurrentUser = createAction('CURRENT_USER_SET');
 export const unsetCurrentUser = createAction('CURRENT_USER_UNSET');
