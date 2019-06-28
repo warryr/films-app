@@ -93,7 +93,11 @@ const Register = props => {
   );
 };
 
-Register.propTypes = {
+const RegisterForm = reduxForm({
+  form: 'registerForm',
+})(Register);
+
+RegisterForm.propTypes = {
   handleSubmit: PropTypes.func,
   usernameError: PropTypes.string,
   emailError: PropTypes.string,
@@ -101,9 +105,5 @@ Register.propTypes = {
   confirmError: PropTypes.string,
   registerErrors: PropTypes.array,
 };
-
-const RegisterForm = reduxForm({
-  form: 'registerForm',
-})(Register);
 
 export default RegisterForm;
