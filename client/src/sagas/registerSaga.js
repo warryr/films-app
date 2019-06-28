@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { registerUserSucceeded, registerUserFailed } from '../actions/actionCreators';
-import { USER_REGISTER_REQUESTED } from '../actions/actionTypes';
+import { registerUserSucceeded, registerUserFailed } from '../actions/actions';
 import { history } from '../reducers/store';
 
 function* registerWatcher() {
-  yield takeLatest(USER_REGISTER_REQUESTED, registerFlow);
+  yield takeLatest('USER_REGISTER_REQUESTED', registerFlow);
 }
 
 function* registerFlow(action) {

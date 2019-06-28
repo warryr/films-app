@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RegisterForm from '../views/Register';
 import validate from '../util/validation/validateRegister';
-import { setRegisterValidation, registerUserRequested } from '../actions/actionCreators';
+import { setRegisterValidation, registerUserRequested } from '../actions/actions';
 
 class RegisterContainer extends React.Component {
   handleSignUp = values => {
