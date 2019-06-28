@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LoginContainer from '../../containers/LoginContainer';
 
 const renderTextField = ({ input, ...custom }) => {
   return <TextField variant='outlined' margin='normal' {...input} {...custom} required fullWidth />;
@@ -82,7 +83,7 @@ const Register = props => {
 
           <Grid container>
             <Grid item>
-              <Link to='/register' variant='body2' className={classes.link}>
+              <Link href='/login' variant='body2' className={classes.link}>
                 Already have an account? Log in
               </Link>
             </Grid>
