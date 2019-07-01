@@ -3,13 +3,16 @@ import path from 'path';
 import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+
 import connectToMongoose from './models/db';
+import configurePassport from './middleware/authentication';
 
 import indexRouter from './routes';
 import usersRouter from './routes/users';
 
 const app = express();
 connectToMongoose();
+configurePassport();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

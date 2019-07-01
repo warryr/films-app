@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import { validate } from 'express-jsonschema';
 
 import registerUserSchema from '../schemas/registerUserSchema';
@@ -16,6 +17,18 @@ router.post('/register', validate({ body: registerUserSchema }), async (req, res
   } catch (err) {
     next(err);
   }
+});
+
+router.post('/login', validate({ body: loginUserSchema }), (req, res, next) => {
+  passport.authenticate('local', { session: false }, function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).send({ error: 'Invalid username or password' });
+    }
+    return res.send(user);
+  })(req, res, next);
 });
 
 router.use((err, req, res, next) => {

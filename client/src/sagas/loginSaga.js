@@ -15,7 +15,9 @@ function* loginFlow(action) {
       headers: { 'Content-Type': 'application/json' },
       data: action.payload,
     });
-    yield put(setCurrentUser({ username: response.data.username, email: response.data.email, token: 'token' }));
+    yield put(
+      setCurrentUser({ username: response.data.username, email: response.data.email, token: response.data.token })
+    );
     yield call(history.push, '/films');
   } catch (err) {
     const errors = [];
