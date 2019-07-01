@@ -21,16 +21,14 @@ class LoginContainer extends React.Component {
     }
   };
 
-  render() {
-    return (
-      <LoginForm
-        onSubmit={this.handleLogIn}
-        usernameError={this.props.validationErrors.username}
-        passwordError={this.props.validationErrors.password}
-        loginErrors={this.props.loginErrors}
-      />
-    );
-  }
+  render = () => (
+    <LoginForm
+      onSubmit={this.handleLogIn}
+      usernameError={this.props.validationErrors.username}
+      passwordError={this.props.validationErrors.password}
+      loginErrors={this.props.loginErrors}
+    />
+  );
 }
 
 const mapStateToProps = state => ({

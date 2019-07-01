@@ -24,18 +24,16 @@ class RegisterContainer extends React.Component {
     }
   };
 
-  render() {
-    return (
-      <RegisterForm
-        onSubmit={this.handleSignUp}
-        usernameError={this.props.validationErrors.username}
-        emailError={this.props.validationErrors.email}
-        passwordError={this.props.validationErrors.password}
-        confirmError={this.props.validationErrors.confirmPassword}
-        registerErrors={this.props.registerErrors}
-      />
-    );
-  }
+  render = () => (
+    <RegisterForm
+      onSubmit={this.handleSignUp}
+      usernameError={this.props.validationErrors.username}
+      emailError={this.props.validationErrors.email}
+      passwordError={this.props.validationErrors.password}
+      confirmError={this.props.validationErrors.confirmPassword}
+      registerErrors={this.props.registerErrors}
+    />
+  );
 }
 
 const mapStateToProps = state => ({
