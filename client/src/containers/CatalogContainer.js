@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(getCategoriesRequested()),
-  getFilms: arg => dispatch(getFilmsRequested(arg)),
+  getFilms: query => dispatch(getFilmsRequested(query)),
 });
 
 export default connect(
