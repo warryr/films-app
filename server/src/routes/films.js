@@ -26,8 +26,8 @@ router.get('/', async (req, res, next) => {
         category: 1,
       },
       {
-        $limit: 10,
-        $sort: sortConditions,
+        limit: 10,
+        sort: sortConditions,
       }
     ).populate({ path: 'category', select: 'title _id' });
 
