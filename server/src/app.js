@@ -10,6 +10,7 @@ import configurePassport from './middleware/authentication';
 import indexRouter from './routes';
 import usersRouter from './routes/users';
 import filmsRouter from './routes/films';
+import categoriesRouter from './routes/categories';
 
 const app = express();
 connectToMongoose();
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/films', filmsRouter);
+app.use('/api/categories', categoriesRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
