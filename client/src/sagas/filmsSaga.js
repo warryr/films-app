@@ -12,9 +12,6 @@ function* filmsWatcher() {
 function* filmsFlow(action) {
   try {
     const token = select(getToken);
-
-    console.log(action.payload);
-
     const query = action.payload ? action.payload : '';
     const response = yield call(axios, `/api/films${query}`, {
       method: 'GET',
