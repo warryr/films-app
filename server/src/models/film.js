@@ -10,18 +10,6 @@ const filmSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  avatar: {
-    type: mongoose.SchemaTypes.Mixed,
-    required: true,
-  },
-  gallery: {
-    type: [
-      {
-        type: mongoose.SchemaTypes.Mixed,
-      },
-    ],
-    required: true,
-  },
   rating: {
     type: mongoose.SchemaTypes.Number,
     required: false,
