@@ -1,24 +1,62 @@
 import { handleActions } from 'redux-actions';
 
-const filmReducer = handleActions(
+const catalogReducer = handleActions(
   {
-    CATALOG_GET_REQUESTED: (state, action) => ({
-      loading: true,
+    FILMS_GET_REQUESTED: (state, action) => ({
+      films: {
+        loading: true,
+        query: action.payload,
+      },
+      categories: { ...state.categories },
     }),
-    CATALOG_GET_SUCCEEDED: (state, action) => ({
-      loading: false,
-      films: action.payload,
+    FILMS_GET_SUCCEEDED: (state, action) => ({
+      films: {
+        loading: false,
+        items: action.payload,
+      },
+      categories: { ...state.categories },
     }),
-    CATALOG_GET_FAILED: (state, action) => ({
-      loading: false,
-      error: action.payload,
+    FILMS_GET_FAILED: (state, action) => ({
+      films: {
+        loading: false,
+        error: action.payload,
+      },
+      categories: { ...state.categories },
+    }),
+    CATEGORIES_GET_REQUESTED: (state, action) => ({
+      categories: {
+        loading: true,
+      },
+      films: { ...state.films },
+    }),
+    CATEGORIES_GET_SUCCEEDED: (state, action) => ({
+      categories: {
+        loading: false,
+        items: action.payload,
+      },
+      films: { ...state.films },
+    }),
+    CATEGORIES_GET_FAILED: (state, action) => ({
+      categories: {
+        loading: false,
+        error: action.payload,
+      },
+      films: { ...state.films },
     }),
   },
   {
-    loading: false,
-    error: '',
-    films: [],
+    films: {
+      loading: false,
+      query: '',
+      error: '',
+      items: [],
+    },
+    categories: {
+      loading: false,
+      error: '',
+      items: [],
+    },
   }
 );
 
-export default filmReducer;
+export default catalogReducer;
