@@ -18,7 +18,7 @@ function* loginFlow(action) {
     yield put(
       setCurrentUser({ username: response.data.username, email: response.data.email, token: response.data.token })
     );
-    yield call(history.push, '/films');
+    yield call(history.push, '/catalog');
   } catch (err) {
     const errors = [];
 

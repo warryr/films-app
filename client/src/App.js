@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route path='/register' component={RegisterContainer} />
         <Route path='/login' component={LoginContainer} />
-        <Route path='/films' component={CatalogContainer} />
+        <Route path='/catalog' component={CatalogContainer} />
         <Redirect to='/login' />
       </Switch>
     </ConnectedRouter>
