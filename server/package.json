@@ -15,6 +15,7 @@
     "express-jsonschema": "^1.1.6",
     "http-errors": "latest",
     "jsonwebtoken": "^8.5.1",
+    "migrate-mongo": "^6.0.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.0",
     "morgan": "~1.9.1",
