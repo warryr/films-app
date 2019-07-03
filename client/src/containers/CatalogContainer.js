@@ -23,8 +23,8 @@ class CatalogContainer extends React.Component {
     <Catalog
       items={this.props.films}
       categories={this.props.categories}
-      iLoading={this.props.filmsLoading}
-      cLoading={this.props.categoriesLoading}
+      itemsLoading={this.props.filmsLoading}
+      categoriesLoading={this.props.categoriesLoading}
       getByCategory={this.getFilmsByCategory}
     />
   );
