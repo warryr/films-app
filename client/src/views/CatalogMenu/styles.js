@@ -11,7 +11,15 @@ export const useStyles = makeStyles(theme => ({
     height: 'auto',
     margin: theme.spacing(3),
   },
-  menu: {
+  menuSort: {},
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  menuCategories: {
     height: 'auto',
     padding: theme.spacing(2),
     boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',

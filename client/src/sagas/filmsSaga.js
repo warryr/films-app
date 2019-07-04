@@ -12,7 +12,13 @@ function* filmsWatcher() {
 function* filmsFlow(action) {
   try {
     const token = yield select(getToken);
-    const query = action.payload ? action.payload : '';
+    let query = '?';
+    if (action.payload) {
+      for (let key in action.payload) {
+        query += action.payload[key] ? `${key}=${action.payload[key]}&` : '';
+      }
+      query = query.slice(0, -1);
+    }
     const response = yield call(axios, `/api/films${query}`, {
       method: 'GET',
       headers: {

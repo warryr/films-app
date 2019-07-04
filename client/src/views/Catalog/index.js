@@ -10,6 +10,7 @@ import CatalogItems from '../CatalogItems';
 
 const Catalog = props => {
   const classes = useStyles();
+
   return props.categoriesError || props.filmsError ? (
     <Container className={classes.paper}>
       <Typography className={classes.error}>{props.categoriesError || props.filmsError}</Typography>
@@ -24,7 +25,7 @@ const Catalog = props => {
         <CatalogMenu
           categories={props.categories}
           loading={props.categoriesLoading}
-          getByCategory={props.getByCategory}
+          handleSettings={props.handleSettings}
         />
         <CatalogItems films={props.films} loading={props.filmsLoading} />
       </Container>
@@ -51,7 +52,7 @@ Catalog.propTypes = {
   categoriesError: PropTypes.string.isRequired,
   filmsLoading: PropTypes.bool.isRequired,
   filmsError: PropTypes.string.isRequired,
-  getByCategory: PropTypes.func.isRequired,
+  handleSettings: PropTypes.func.isRequired,
 };
 
 export default Catalog;

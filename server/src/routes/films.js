@@ -14,10 +14,14 @@ router.get('/', async (req, res, next) => {
       return res.status(401).send('Invalid token');
     }
     try {
-      const searchConditions = req.query.category ? { category: req.query.category } : {};
-      const sortConditions = { _id: 1 };
+      const searchConditions = {};
+      req.query.category ? (searchConditions.category = req.query.category) : undefined;
 
-      // get all films or by category
+      const sortConditions = {
+        [req.query.sort]: parseInt(req.query.order),
+        _id: parseInt(req.query.order),
+      };
+
       const docs = await Film.find(
         searchConditions,
         {

@@ -10,6 +10,8 @@ export const registerUserFailed = createAction('USER_REGISTER_FAILED');
 export const loginUserRequested = createAction('USER_LOGIN_REQUESTED');
 export const loginUserFailed = createAction('USER_LOGIN_FAILED');
 
+export const updateCatalogSettings = createAction('CATALOG_SETTINGS_UPDATE');
+
 export const getFilmsRequested = createAction('FILMS_GET_REQUESTED');
 export const getFilmsSucceeded = createAction('FILMS_GET_SUCCEEDED');
 export const getFilmsFailed = createAction('FILMS_GET_FAILED');

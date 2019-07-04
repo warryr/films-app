@@ -2,46 +2,49 @@ import { handleActions } from 'redux-actions';
 
 const catalogReducer = handleActions(
   {
+    CATALOG_SETTINGS_UPDATE: (state, action) => ({
+      ...state,
+      settings: { ...state.settings, ...action.payload },
+    }),
     FILMS_GET_REQUESTED: (state, action) => ({
+      ...state,
       films: {
         loading: true,
-        query: action.payload,
       },
-      categories: { ...state.categories },
     }),
     FILMS_GET_SUCCEEDED: (state, action) => ({
+      ...state,
       films: {
         loading: false,
         items: action.payload,
       },
-      categories: { ...state.categories },
     }),
     FILMS_GET_FAILED: (state, action) => ({
+      ...state,
       films: {
         loading: false,
         error: action.payload,
       },
-      categories: { ...state.categories },
     }),
     CATEGORIES_GET_REQUESTED: (state, action) => ({
+      ...state,
       categories: {
         loading: true,
       },
-      films: { ...state.films },
     }),
     CATEGORIES_GET_SUCCEEDED: (state, action) => ({
+      ...state,
       categories: {
         loading: false,
         items: action.payload,
       },
-      films: { ...state.films },
     }),
     CATEGORIES_GET_FAILED: (state, action) => ({
+      ...state,
       categories: {
         loading: false,
         error: action.payload,
       },
-      films: { ...state.films },
     }),
   },
   {
@@ -55,6 +58,11 @@ const catalogReducer = handleActions(
       loading: false,
       error: '',
       items: [],
+    },
+    settings: {
+      category: '',
+      sort: 'title',
+      order: 1,
     },
   }
 );
