@@ -20,7 +20,7 @@ router.post('/register', validate({ body: registerUserSchema }), async (req, res
 });
 
 router.post('/login', validate({ body: loginUserSchema }), (req, res, next) => {
-  passport.authenticate('local', { session: false }, function(err, user) {
+  passport.authenticate('local', { session: false }, (err, user) => {
     if (err) {
       return next(err);
     }
