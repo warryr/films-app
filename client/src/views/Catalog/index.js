@@ -14,7 +14,7 @@ const Catalog = props => {
     <Container className={classes.paper}>
       <Typography className={classes.error}>{props.categoriesError || props.filmsError}</Typography>
       <Typography className={classes.error}>
-        <Link href='/login'>Login</Link> properly to get valid token
+        <Link href='/login'>Log in</Link> properly to get valid token
       </Typography>
     </Container>
   ) : (
