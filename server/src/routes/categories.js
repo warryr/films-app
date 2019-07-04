@@ -6,23 +6,31 @@ import FilmCategory from '../models/filmCategory';
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-  try {
-    const docs = await FilmCategory.find(
-      {},
-      {
-        title: 1,
-        description: 1,
-      },
-      {
-        $sort: {
+  passport.authenticate('jwt', { session: false }, async (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).send('Invalid token');
+    }
+    try {
+      const docs = await FilmCategory.find(
+        {},
+        {
           title: 1,
+          description: 1,
         },
-      }
-    );
-    res.send(docs);
-  } catch (err) {
-    next(err);
-  }
+        {
+          $sort: {
+            title: 1,
+          },
+        }
+      );
+      res.send(docs);
+    } catch (err) {
+      next(err);
+    }
+  })(req, res, next);
 });
 
 router.use((err, req, res, next) => {
