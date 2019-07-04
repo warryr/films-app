@@ -14,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
   menu: {
     height: 'auto',
     padding: theme.spacing(2),
-    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.2)',
+    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
   },
   title: {
     margin: `${theme.spacing(2)}px 0`,
@@ -42,7 +42,7 @@ export const useStyles = makeStyles(theme => ({
   },
   active: {
     color: '#ffffff',
-    backgroundColor: '#7e57c2',
+    backgroundColor: '#9575cd',
     '&:hover': {
       backgroundColor: '#b39ddb',
     },

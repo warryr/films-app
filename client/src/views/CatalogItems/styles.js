@@ -17,10 +17,11 @@ export const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: '27%',
     margin: theme.spacing(3),
+    backgroundColor: theme.palette.common.white,
     transition: '0.5s',
-    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.2)',
+    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
     '&:hover': {
-      boxShadow: '0 16px 50px 5px rgba(0,0,0,0.2)',
+      boxShadow: '0 16px 50px 5px rgba(0,0,0,0.15)',
     },
   },
   media: {
