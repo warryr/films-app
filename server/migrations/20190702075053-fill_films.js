@@ -9,7 +9,7 @@ module.exports = {
         description:
           'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ' +
           'ill-fated R.M.S. Titanic.',
-
+        year: 1997,
         rating: 5,
         category: ObjectID('5d089d57a07666ef9cfed35f'),
       },
@@ -19,7 +19,7 @@ module.exports = {
         description:
           'A working-class Italian-American bouncer becomes the driver of an African-American classical pianist on ' +
           'a tour of venues through the 1960s American South.',
-
+        year: 2018,
         rating: 5,
         category: ObjectID('5d089d57a07666ef9cfed360'),
       },
@@ -29,6 +29,7 @@ module.exports = {
         description:
           'A writer and wall street trader, Nick, finds himself drawn to the past and lifestyle of his millionaire ' +
           'neighbor, Jay Gatsby.',
+        year: 2013,
         rating: 4,
         category: ObjectID('5d089d57a07666ef9cfed360'),
       },
@@ -38,6 +39,7 @@ module.exports = {
         description:
           'Celebrates the birth of show business and tells of a visionary who rose from nothing to create ' +
           'a spectacle that became a worldwide sensation.',
+        year: 2017,
         rating: 4,
         category: ObjectID('5d089d57a07666ef9cfed360'),
       },
@@ -46,6 +48,7 @@ module.exports = {
         title: 'Cheaper by the Dozen',
         description:
           'With his wife doing a book tour, a father of twelve must handle a new job and his unstable brood.',
+        year: 2003,
         rating: 3,
         category: ObjectID('5d089d57a07666ef9cfed35e'),
       },

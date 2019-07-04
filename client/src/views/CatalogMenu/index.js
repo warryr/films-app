@@ -52,6 +52,7 @@ const CatalogMenu = props => {
               id: 'sort',
             }}>
             <MenuItem value={'title'}>Title</MenuItem>
+            <MenuItem value={'year'}>Year</MenuItem>
             <MenuItem value={'category'}>Category</MenuItem>
           </Select>
         </FormControl>

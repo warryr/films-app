@@ -37,7 +37,9 @@ export const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
   },
   subtitle: {
+    margin: `${theme.spacing(2)}px 0`,
     fontSize: '16px',
+    fontWeight: 'bold',
     color: theme.palette.secondary.dark,
   },
   text: {

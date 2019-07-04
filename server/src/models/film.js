@@ -10,6 +10,10 @@ const filmSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  year: {
+    type: Number,
+    required: true,
+  },
   rating: {
     type: mongoose.SchemaTypes.Number,
     required: false,
