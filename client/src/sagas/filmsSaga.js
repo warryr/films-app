@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { getFilmsSucceeded, getFilmsFailed } from '../actions/actions';
-import { history } from '../reducers/store';
 
 const getToken = state => state.currentUser.token;
 
@@ -25,9 +24,6 @@ function* filmsFlow(action) {
   } catch (err) {
     console.log(err.response);
     yield put(getFilmsFailed(err.response.data));
-    if (err.response.status === 401) {
-      yield call(history.push, '/login');
-    }
   }
 }
 
