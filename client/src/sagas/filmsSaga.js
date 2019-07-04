@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { getFilmsSucceeded, getFilmsFailed } from '../actions/actions';
+import { history } from '../reducers/store';
 
 const getToken = state => state.currentUser.token;
 
@@ -11,7 +12,7 @@ function* filmsWatcher() {
 
 function* filmsFlow(action) {
   try {
-    const token = select(getToken);
+    const token = yield select(getToken);
     const query = action.payload ? action.payload : '';
     const response = yield call(axios, `/api/films${query}`, {
       method: 'GET',
@@ -22,7 +23,11 @@ function* filmsFlow(action) {
     });
     yield put(getFilmsSucceeded(response.data));
   } catch (err) {
+    console.log(err.response);
     yield put(getFilmsFailed(err.response.data));
+    if (err.response.status === 401) {
+      yield call(history.push, '/login');
+    }
   }
 }
 
