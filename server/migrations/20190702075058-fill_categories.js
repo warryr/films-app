@@ -19,7 +19,11 @@ module.exports = {
         _id: ObjectID('5d089d57a07666ef9cfed360'),
         title: "2010's films",
         description: 'Films that have been released in 2010-2019.',
-        films: [ObjectID('5d089b1d655a7c1ae81bb86d'), ObjectID('5d089b1d655a7c1ae81bb86c'), ObjectID('5d089b1d655a7c1ae81bb86b')],
+        films: [
+          ObjectID('5d089b1d655a7c1ae81bb86d'),
+          ObjectID('5d089b1d655a7c1ae81bb86c'),
+          ObjectID('5d089b1d655a7c1ae81bb86b'),
+        ],
       },
     ]);
   },

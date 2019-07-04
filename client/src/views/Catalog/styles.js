@@ -13,5 +13,5 @@ export const useStyles = makeStyles(theme => ({
     display: 'grid',
     gridTemplateColumns: '1fr 4fr',
     gridGap: theme.spacing(2),
-  }
+  },
 }));
