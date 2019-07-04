@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import Container from '@material-ui/core/Container';
@@ -25,7 +25,7 @@ const CatalogMenu = props => {
       ...otherValues,
       [event.target.name]: event.target.value,
     }));
-    props.handleSettings({ ...values });
+    props.handleSettings({ [event.target.name]: event.target.value });
   };
 
   const handleClick = (nextCategory, index) => {
@@ -33,7 +33,7 @@ const CatalogMenu = props => {
     setCategory(nextCategory);
 
     currentCategory === nextCategory && pressedButton === index
-      ? props.handleSettings()
+      ? props.handleSettings({ category: '' })
       : props.handleSettings({ category: nextCategory });
   };
 

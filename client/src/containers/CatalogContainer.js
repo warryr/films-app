@@ -6,12 +6,17 @@ import { getFilmsRequested, getCategoriesRequested, updateCatalogSettings } from
 class CatalogContainer extends React.Component {
   handleSettings = newSettings => {
     this.props.updateSettings(newSettings);
-    this.props.getFilms(this.props.settings);
   };
 
   componentDidMount = () => {
     this.props.getCategories();
-    this.props.getFilms();
+    this.props.getFilms(this.props.settings);
+  };
+
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    if (prevProps.settings !== this.props.settings) {
+      this.props.getFilms(this.props.settings);
+    }
   };
 
   render = () => (
