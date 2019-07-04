@@ -16,6 +16,7 @@ export const useStyles = makeStyles(theme => ({
   },
   card: {
     maxWidth: '27%',
+    maxHeight: '50%',
     margin: theme.spacing(3),
     backgroundColor: theme.palette.common.white,
     transition: '0.5s',
