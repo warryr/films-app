@@ -20,8 +20,8 @@ const CatalogMenu = props => {
       : props.getByCategory(nextCategory);
   };
 
-  return props.loading || props.error ? (
-    <Typography className={classes.loading}>{props.error || 'Loading...'}</Typography>
+  return props.loading ? (
+    <Typography className={classes.loading}>Loading...</Typography>
   ) : (
     <Container className={classes.menuContainer}>
       <Box className={classes.menu}>
@@ -47,7 +47,6 @@ CatalogMenu.propTypes = {
     })
   ),
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
   getByCategory: PropTypes.func.isRequired,
 };
 

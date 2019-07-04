@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 const CatalogItems = props => {
   const classes = useStyles();
-  return props.loading || props.error ? (
-    <Typography className={classes.loading}>{props.error || 'Loading...'}</Typography>
+  return props.loading ? (
+    <Typography className={classes.loading}>Loading...</Typography>
   ) : (
     <Container className={classes.cardsContainer}>
       {props.films.map((film, index) => (
@@ -39,7 +39,6 @@ CatalogItems.propTypes = {
     })
   ),
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
 };
 
 export default CatalogItems;

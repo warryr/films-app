@@ -14,4 +14,8 @@ export const useStyles = makeStyles(theme => ({
     gridTemplateColumns: '1fr 4fr',
     gridGap: theme.spacing(2),
   },
+  error: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+  },
 }));
