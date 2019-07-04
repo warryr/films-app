@@ -37,7 +37,14 @@ export const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: '#EEEEEE',
+      backgroundColor: '#eeeeee',
     },
-  }
+  },
+  active: {
+    color: '#ffffff',
+    backgroundColor: '#7e57c2',
+    '&:hover': {
+      backgroundColor: '#b39ddb',
+    },
+  },
 }));
