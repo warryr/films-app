@@ -7,22 +7,27 @@ export const useStyles = makeStyles(theme => ({
     },
   },
   menuContainer: {
-    width: '100%',
+    display: 'grid',
+    gridTemplateRows: '1fr 4fr',
+    width: 'auto',
     height: 'auto',
     margin: theme.spacing(3),
+    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
+
   },
-  menuSort: {},
+  menuSort: {
+    padding: theme.spacing(1),
+  },
+  menuCategories: {
+    height: 'auto',
+    padding: theme.spacing(1),
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
-  },
-  menuCategories: {
-    height: 'auto',
-    padding: theme.spacing(2),
-    boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
   },
   title: {
     margin: `${theme.spacing(2)}px 0`,
