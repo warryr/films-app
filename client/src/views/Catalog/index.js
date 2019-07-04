@@ -15,9 +15,10 @@ const Catalog = props => {
         <CatalogMenu
           categories={props.categories}
           loading={props.categoriesLoading}
+          error={props.categoriesError}
           getByCategory={props.getByCategory}
         />
-        <CatalogItems items={props.items} loading={props.itemsLoading} />
+        <CatalogItems films={props.films} loading={props.filmsLoading} error={props.filmsError} />
       </Container>
     </Container>
   );
@@ -30,7 +31,7 @@ Catalog.propTypes = {
       description: PropTypes.string.isRequired,
     })
   ),
-  items: PropTypes.arrayOf(
+  films: PropTypes.arrayOf(
     PropTypes.shape({
       avatar: PropTypes.node.isRequired,
       title: PropTypes.string.isRequired,
@@ -39,7 +40,9 @@ Catalog.propTypes = {
     })
   ),
   categoriesLoading: PropTypes.bool.isRequired,
-  itemsLoading: PropTypes.bool.isRequired,
+  categoriesError: PropTypes.string.isRequired,
+  filmsLoading: PropTypes.bool.isRequired,
+  filmsError: PropTypes.string.isRequired,
   getByCategory: PropTypes.func.isRequired,
 };
 

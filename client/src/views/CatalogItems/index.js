@@ -10,18 +10,18 @@ import Typography from '@material-ui/core/Typography';
 
 const CatalogItems = props => {
   const classes = useStyles();
-  return props.loading ? (
-    <Typography className={classes.loading}>Loading...</Typography>
+  return props.loading || props.error ? (
+    <Typography className={classes.loading}>{props.error || 'Loading...'}</Typography>
   ) : (
     <Container className={classes.cardsContainer}>
-      {props.items.map((item, index) => (
+      {props.films.map((film, index) => (
         <Card className={classes.card} key={index}>
-          <CardMedia className={classes.media} image={item.avatar} />
+          <CardMedia className={classes.media} image={film.avatar} />
           <CardContent className={classes.content}>
-            <Typography className={classes.title}>{item.title}</Typography>
-            <Typography className={classes.text}>{item.description}</Typography>
+            <Typography className={classes.title}>{film.title}</Typography>
+            <Typography className={classes.text}>{film.description}</Typography>
             <Divider className={classes.divider} light />
-            <Typography className={classes.subtitle}>{item.category.title}</Typography>
+            <Typography className={classes.subtitle}>{film.category.title}</Typography>
           </CardContent>
         </Card>
       ))}
@@ -30,7 +30,7 @@ const CatalogItems = props => {
 };
 
 CatalogItems.propTypes = {
-  items: PropTypes.arrayOf(
+  films: PropTypes.arrayOf(
     PropTypes.shape({
       avatar: PropTypes.node.isRequired,
       title: PropTypes.string.isRequired,
@@ -39,6 +39,7 @@ CatalogItems.propTypes = {
     })
   ),
   loading: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default CatalogItems;
