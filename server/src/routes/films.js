@@ -28,7 +28,6 @@ router.get('/', async (req, res, next) => {
           title: 1,
           description: 1,
           year: 1,
-          avatar: 1,
           category: 1,
         },
         {

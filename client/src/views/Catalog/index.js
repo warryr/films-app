@@ -42,7 +42,6 @@ Catalog.propTypes = {
   ),
   films: PropTypes.arrayOf(
     PropTypes.shape({
-      avatar: PropTypes.node.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
