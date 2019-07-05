@@ -44,6 +44,8 @@ Catalog.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      rating: PropTypes.number,
       category: PropTypes.string.isRequired,
     })
   ),

@@ -13,7 +13,6 @@ export const useStyles = makeStyles(theme => ({
     height: 'auto',
     margin: theme.spacing(3),
     boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
-
   },
   menuSort: {
     padding: theme.spacing(1),

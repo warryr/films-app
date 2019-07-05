@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import { ReactComponent as Star } from '../../images/star-solid.svg';
 
 const CatalogItems = props => {
   const classes = useStyles();
@@ -20,7 +21,13 @@ const CatalogItems = props => {
             <Typography className={classes.subtitle}>{film.year}</Typography>
             <Typography className={classes.text}>{film.description}</Typography>
             <Divider className={classes.divider} light />
-            <Typography className={classes.subtitle}>{film.category.title}</Typography>
+            {film.rating ? (
+              <Typography className={classes.subtitle2}>
+                <Star className={classes.star} />
+                {film.rating}
+              </Typography>
+            ) : null}
+            <Typography className={classes.subtitle1}>{film.category.title}</Typography>
           </CardContent>
         </Card>
       ))}
@@ -34,6 +41,7 @@ CatalogItems.propTypes = {
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       year: PropTypes.number.isRequired,
+      rating: PropTypes.number,
       category: PropTypes.string.isRequired,
     })
   ),

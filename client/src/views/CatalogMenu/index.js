@@ -53,6 +53,7 @@ const CatalogMenu = props => {
             }}>
             <MenuItem value={'title'}>Title</MenuItem>
             <MenuItem value={'year'}>Year</MenuItem>
+            <MenuItem value={'rating'}>Rating</MenuItem>
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>

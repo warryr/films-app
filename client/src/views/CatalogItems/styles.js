@@ -37,11 +37,17 @@ export const useStyles = makeStyles(theme => ({
     fontSize: '20px',
     fontWeight: 'bold',
   },
-  subtitle: {
+  subtitle1: {
     margin: `${theme.spacing(2)}px 0`,
     fontSize: '16px',
     fontWeight: 'bold',
     color: theme.palette.secondary.dark,
+  },
+  subtitle2: {
+    margin: `${theme.spacing(2)}px 0`,
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: theme.palette.common.black,
   },
   text: {
     fontSize: '14px',
@@ -53,5 +59,11 @@ export const useStyles = makeStyles(theme => ({
   },
   divider: {
     margin: `${theme.spacing(3)}px 0`,
+  },
+  star: {
+    display: 'inline-block',
+    width: '14px',
+    height: '14px',
+    margin: `0 4px`,
   },
 }));
