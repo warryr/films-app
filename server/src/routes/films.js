@@ -28,10 +28,10 @@ router.get('/', async (req, res, next) => {
           title: 1,
           description: 1,
           year: 1,
+          rating: 1,
           category: 1,
         },
         {
-          limit: 10,
           sort: sortConditions,
         }
       ).populate({ path: 'category', select: 'title _id' });
