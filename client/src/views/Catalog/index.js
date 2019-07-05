@@ -27,7 +27,12 @@ const Catalog = props => {
           loading={props.categoriesLoading}
           handleSettings={props.handleSettings}
         />
-        <CatalogItems films={props.films} loading={props.filmsLoading} />
+        <CatalogItems
+          films={props.films}
+          loading={props.filmsLoading}
+          handleNextPage={props.handleNextPage}
+          hasMore={props.hasMore}
+        />
       </Container>
     </Container>
   );
@@ -46,14 +51,16 @@ Catalog.propTypes = {
       description: PropTypes.string.isRequired,
       year: PropTypes.number.isRequired,
       rating: PropTypes.number,
-      category: PropTypes.string.isRequired,
+      category: PropTypes.object.isRequired,
     })
   ),
   categoriesLoading: PropTypes.bool.isRequired,
-  categoriesError: PropTypes.string.isRequired,
+  categoriesError: PropTypes.string,
   filmsLoading: PropTypes.bool.isRequired,
-  filmsError: PropTypes.string.isRequired,
+  filmsError: PropTypes.string,
   handleSettings: PropTypes.func.isRequired,
+  handleNextPage: PropTypes.func.isRequired,
+  hasMore: PropTypes.bool.isRequired,
 };
 
 export default Catalog;

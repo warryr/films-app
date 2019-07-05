@@ -6,6 +6,10 @@ const catalogReducer = handleActions(
       ...state,
       settings: { ...state.settings, ...action.payload },
     }),
+    HAS_MORE_UPDATE: (state, action) => ({
+      ...state,
+      hasMore: action.payload,
+    }),
     FILMS_GET_REQUESTED: (state, action) => ({
       ...state,
       films: {
@@ -16,7 +20,7 @@ const catalogReducer = handleActions(
       ...state,
       films: {
         loading: false,
-        items: action.payload,
+        items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
       },
     }),
     FILMS_GET_FAILED: (state, action) => ({
@@ -48,6 +52,7 @@ const catalogReducer = handleActions(
     }),
   },
   {
+    hasMore: true,
     films: {
       loading: false,
       query: '',
@@ -60,6 +65,7 @@ const catalogReducer = handleActions(
       items: [],
     },
     settings: {
+      page: 1,
       category: '',
       sort: 'title',
       order: 1,

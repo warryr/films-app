@@ -7,10 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as Star } from '../../images/star-solid.svg';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const CatalogItems = props => {
   const classes = useStyles();
-  return props.loading ? (
+
+  return props.loading && !props.films ? (
     <Typography className={classes.loading}>Loading...</Typography>
   ) : (
     <Container className={classes.cardsContainer}>
@@ -31,6 +33,13 @@ const CatalogItems = props => {
           </CardContent>
         </Card>
       ))}
+
+      {/*<InfiniteScroll*/}
+      {/*  pageStart={0}*/}
+      {/*  loadMore={props.handleNextPage}*/}
+      {/*  hasMore={props.hasMore}*/}
+      {/*  loader={<Typography className={classes.loading}>Loading...</Typography>}>*/}
+      {/*</InfiniteScroll>*/}
     </Container>
   );
 };
@@ -42,10 +51,12 @@ CatalogItems.propTypes = {
       description: PropTypes.string.isRequired,
       year: PropTypes.number.isRequired,
       rating: PropTypes.number,
-      category: PropTypes.string.isRequired,
+      category: PropTypes.object.isRequired,
     })
   ),
   loading: PropTypes.bool.isRequired,
+  handleNextPage: PropTypes.func.isRequired,
+  hasMore: PropTypes.bool.isRequired,
 };
 
 export default CatalogItems;

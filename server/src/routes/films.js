@@ -14,6 +14,12 @@ router.get('/', async (req, res, next) => {
       return res.status(401).send('Invalid token');
     }
     try {
+      const pageSize = 3;
+      const page = req.query.page;
+
+      const collectionSize = await Film.countDocuments({});
+      const hasMore = collectionSize > pageSize * page;
+
       const searchConditions = {};
       req.query.category ? (searchConditions.category = req.query.category) : undefined;
 
@@ -32,10 +38,13 @@ router.get('/', async (req, res, next) => {
           category: 1,
         },
         {
+          skip: pageSize * (page - 1),
+          limit: pageSize,
           sort: sortConditions,
         }
       ).populate({ path: 'category', select: 'title _id' });
-      res.send(docs);
+
+      res.send({ hasMore, films: docs });
     } catch (err) {
       next(err);
     }

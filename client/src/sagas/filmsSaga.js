@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { getFilmsSucceeded, getFilmsFailed } from '../actions/actions';
+import { getFilmsSucceeded, getFilmsFailed, updateHasMore } from '../actions/actions';
 
 const getToken = state => state.currentUser.token;
+const getSettings = state => state.catalog.settings;
 
 function* filmsWatcher() {
   yield takeLatest('FILMS_GET_REQUESTED', filmsFlow);
@@ -12,13 +13,14 @@ function* filmsWatcher() {
 function* filmsFlow(action) {
   try {
     const token = yield select(getToken);
+    const settings = yield select(getSettings);
+
     let query = '?';
-    if (action.payload) {
-      for (let key in action.payload) {
-        query += action.payload[key] ? `${key}=${action.payload[key]}&` : '';
-      }
-      query = query.slice(0, -1);
+    for (let key in settings) {
+      query += settings[key] ? `${key}=${settings[key]}&` : '';
     }
+    query = query.slice(0, -1);
+
     const response = yield call(axios, `/api/films${query}`, {
       method: 'GET',
       headers: {
@@ -26,9 +28,9 @@ function* filmsFlow(action) {
         Authorization: `Bearer ${token}`,
       },
     });
-    yield put(getFilmsSucceeded(response.data));
+    yield put(getFilmsSucceeded(response.data.films));
+    yield put(updateHasMore(response.data.hasMore));
   } catch (err) {
-    console.log(err.response);
     yield put(getFilmsFailed(err.response.data));
   }
 }

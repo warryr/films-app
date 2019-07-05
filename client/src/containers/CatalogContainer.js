@@ -8,14 +8,18 @@ class CatalogContainer extends React.Component {
     this.props.updateSettings(newSettings);
   };
 
+  handleNextPage = nextPage => {
+    this.props.updateSettings({ page: nextPage });
+  };
+
   componentDidMount = () => {
     this.props.getCategories();
-    this.props.getFilms(this.props.settings);
+    this.props.getFilms();
   };
 
   componentDidUpdate = (prevProps, prevState, snapshot) => {
     if (prevProps.settings !== this.props.settings) {
-      this.props.getFilms(this.props.settings);
+      this.props.getFilms();
     }
   };
 
@@ -28,11 +32,14 @@ class CatalogContainer extends React.Component {
       categoriesLoading={this.props.categoriesLoading}
       categoriesError={this.props.categoriesError}
       handleSettings={this.handleSettings}
+      handleNextPage={this.handleNextPage}
+      hasMore={this.props.hasMore}
     />
   );
 }
 
 const mapStateToProps = state => ({
+  hasMore: state.catalog.hasMore,
   settings: state.catalog.settings,
   categories: state.catalog.categories.items,
   films: state.catalog.films.items,
@@ -44,7 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(getCategoriesRequested()),
-  getFilms: settings => dispatch(getFilmsRequested(settings)),
+  getFilms: () => dispatch(getFilmsRequested()),
   updateSettings: settings => dispatch(updateCatalogSettings(settings)),
 });
 

@@ -33,8 +33,8 @@ const CatalogMenu = props => {
     setCategory(nextCategory);
 
     currentCategory === nextCategory && pressedButton === index
-      ? props.handleSettings({ category: '' })
-      : props.handleSettings({ category: nextCategory });
+      ? props.handleSettings({ category: '', page: 1 })
+      : props.handleSettings({ category: nextCategory, page: 1 });
   };
 
   return props.loading ? (
