@@ -18,7 +18,7 @@ const filmSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.Number,
     required: false,
     min: 0,
-    max: 5,
+    max: 10,
   },
   category: {
     type: mongoose.SchemaTypes.ObjectId,
