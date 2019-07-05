@@ -18,7 +18,7 @@ const CatalogItems = props => {
         <Card className={classes.card} key={index}>
           <CardContent className={classes.content}>
             <Typography className={classes.title}>{film.title}</Typography>
-            <Typography className={classes.subtitle}>{film.year}</Typography>
+            <Typography className={classes.subtitle1}>{film.year}</Typography>
             <Typography className={classes.text}>{film.description}</Typography>
             <Divider className={classes.divider} light />
             {film.rating ? (
