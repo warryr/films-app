@@ -9,8 +9,9 @@ export const useStyles = makeStyles(theme => ({
   menuContainer: {
     display: 'grid',
     gridTemplateRows: '1fr 4fr',
-    width: 'auto',
+    width: '220px',
     height: 'auto',
+    maxHeight: '500px',
     margin: theme.spacing(3),
     boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
   },

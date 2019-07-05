@@ -10,8 +10,7 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
   },
   container: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 4fr',
+    display: 'flex',
     gridGap: theme.spacing(2),
   },
   error: {
