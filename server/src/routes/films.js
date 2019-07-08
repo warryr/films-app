@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
       return res.status(401).send('Invalid token');
     }
     try {
-      const pageSize = 3;
+      const pageSize = 6;
       const page = req.query.page;
 
       const collectionSize = await Film.countDocuments({});
