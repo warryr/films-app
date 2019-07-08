@@ -13,16 +13,19 @@ const catalogReducer = handleActions(
     FILMS_GET_REQUESTED: (state, action) => ({
       ...state,
       films: {
+        ...(state.films || []),
         loading: true,
       },
     }),
-    FILMS_GET_SUCCEEDED: (state, action) => ({
-      ...state,
-      films: {
-        loading: false,
-        items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
-      },
-    }),
+    FILMS_GET_SUCCEEDED: (state, action) => (
+      {
+        ...state,
+        films: {
+          loading: false,
+          items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
+        },
+      }
+    ),
     FILMS_GET_FAILED: (state, action) => ({
       ...state,
       films: {
