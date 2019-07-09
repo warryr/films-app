@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import Container from '@material-ui/core/Container';
@@ -10,6 +10,41 @@ import CatalogItems from '../CatalogItems';
 
 const Catalog = props => {
   const classes = useStyles();
+
+  const [currentPage, setPage] = useState(1);
+  const [currentCategory, setCategory] = useState('');
+  const [pressedButton, setPressedButton] = useState();
+  const [sortValues, setSortValues] = useState({
+    sort: 'title',
+    order: 1,
+  });
+
+  const handleNextPage = () => {
+    setPage(currentPage + 1);
+    props.passSettings({ page: currentPage + 1 });
+  };
+
+  const handleChange = event => {
+    setSortValues(otherValues => ({
+      ...otherValues,
+      [event.target.name]: event.target.value,
+    }));
+    handleSettings({ [event.target.name]: event.target.value });
+  };
+
+  const handleClick = (nextCategory, index) => {
+    pressedButton === index ? setPressedButton() : setPressedButton(index);
+    setCategory(nextCategory);
+
+    currentCategory === nextCategory && pressedButton === index
+      ? handleSettings({ category: '' })
+      : handleSettings({ category: nextCategory });
+  };
+
+  const handleSettings = newSettings => {
+    setPage(1);
+    props.passSettings({ page: 1, ...newSettings });
+  };
 
   return props.categoriesError || props.filmsError ? (
     <Container className={classes.paper}>
@@ -25,12 +60,15 @@ const Catalog = props => {
         <CatalogMenu
           categories={props.categories}
           loading={props.categoriesLoading}
-          handleSettings={props.handleSettings}
+          sortValues={sortValues}
+          pressedButton={pressedButton}
+          handleClick={handleClick}
+          handleChange={handleChange}
         />
         <CatalogItems
           films={props.films}
           loading={props.filmsLoading}
-          handleNextPage={props.handleNextPage}
+          handleNextPage={handleNextPage}
           hasMore={props.hasMore}
         />
       </Container>
@@ -58,8 +96,7 @@ Catalog.propTypes = {
   categoriesError: PropTypes.string,
   filmsLoading: PropTypes.bool.isRequired,
   filmsError: PropTypes.string,
-  handleSettings: PropTypes.func.isRequired,
-  handleNextPage: PropTypes.func.isRequired,
+  passSettings: PropTypes.func.isRequired,
   hasMore: PropTypes.bool.isRequired,
 };
 

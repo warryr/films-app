@@ -4,6 +4,10 @@ const catalogReducer = handleActions(
   {
     CATALOG_SETTINGS_UPDATE: (state, action) => ({
       ...state,
+      films: {
+        ...state.films,
+        items: action.payload.page === 1 ? [] : [...state.films.items],
+      },
       settings: { ...state.settings, ...action.payload },
     }),
     HAS_MORE_UPDATE: (state, action) => ({
@@ -17,15 +21,13 @@ const catalogReducer = handleActions(
         loading: true,
       },
     }),
-    FILMS_GET_SUCCEEDED: (state, action) => (
-      {
-        ...state,
-        films: {
-          loading: false,
-          items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
-        },
-      }
-    ),
+    FILMS_GET_SUCCEEDED: (state, action) => ({
+      ...state,
+      films: {
+        loading: false,
+        items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
+      },
+    }),
     FILMS_GET_FAILED: (state, action) => ({
       ...state,
       films: {

@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Catalog from '../views/Catalog';
-import { getFilmsRequested, getCategoriesRequested, updateCatalogSettings } from '../actions/actions';
+import { getFilmsRequested, getCategoriesRequested, updateCatalogSettings, updateHasMore } from '../actions/actions';
 
 class CatalogContainer extends React.Component {
   handleSettings = newSettings => {
     this.props.updateSettings(newSettings);
-  };
-
-  handleNextPage = nextPage => {
-    this.props.updateSettings({ page: nextPage });
+    this.props.updateHasMore(true);
   };
 
   componentDidMount = () => {
@@ -31,8 +28,7 @@ class CatalogContainer extends React.Component {
       filmsError={this.props.filmsError}
       categoriesLoading={this.props.categoriesLoading}
       categoriesError={this.props.categoriesError}
-      handleSettings={this.handleSettings}
-      handleNextPage={this.handleNextPage}
+      passSettings={this.handleSettings}
       hasMore={this.props.hasMore}
     />
   );
@@ -53,6 +49,7 @@ const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(getCategoriesRequested()),
   getFilms: () => dispatch(getFilmsRequested()),
   updateSettings: settings => dispatch(updateCatalogSettings(settings)),
+  updateHasMore: hasMore => dispatch(updateHasMore(hasMore)),
 });
 
 export default connect(

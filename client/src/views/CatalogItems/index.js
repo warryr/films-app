@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import Container from '@material-ui/core/Container';
@@ -11,12 +11,6 @@ import InfiniteLoader from 'react-infinite-loader';
 
 const CatalogItems = props => {
   const classes = useStyles();
-  const [page, setPage] = useState(1);
-
-  const loadMore = nextPage => {
-    setPage(nextPage);
-    props.handleNextPage(nextPage);
-  };
 
   return props.loading && !props.films ? (
     <Typography className={classes.loading}>Loading...</Typography>
@@ -39,7 +33,7 @@ const CatalogItems = props => {
           </CardContent>
         </Card>
       ))}
-      {props.hasMore ? <InfiniteLoader onVisited={() => loadMore(page + 1)} /> : null}
+      {props.hasMore ? <InfiniteLoader onVisited={props.handleNextPage} /> : null}
     </Container>
   );
 };
