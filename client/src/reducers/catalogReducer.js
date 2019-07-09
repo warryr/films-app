@@ -60,7 +60,6 @@ const catalogReducer = handleActions(
     hasMore: true,
     films: {
       loading: false,
-      query: '',
       error: '',
       items: [],
     },
@@ -71,7 +70,6 @@ const catalogReducer = handleActions(
     },
     settings: {
       page: 1,
-      category: '',
       sort: 'title',
       order: 1,
     },
