@@ -25,9 +25,8 @@ class CatalogContainer extends React.Component {
       films={this.props.films}
       categories={this.props.categories}
       filmsLoading={this.props.filmsLoading}
-      filmsError={this.props.filmsError}
       categoriesLoading={this.props.categoriesLoading}
-      categoriesError={this.props.categoriesError}
+      error={this.props.loadingError}
       passSettings={this.handleSettings}
       hasMore={this.props.hasMore}
     />
@@ -41,8 +40,7 @@ const mapStateToProps = state => ({
   films: state.catalog.films.items,
   categoriesLoading: state.catalog.categories.loading,
   filmsLoading: state.catalog.films.loading,
-  categoriesError: state.catalog.categories.error,
-  filmsError: state.catalog.films.error,
+  loadingError: state.catalog.error,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -9,8 +9,8 @@ export const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
   },
-  container: {
-    display: 'flex',
-    gridGap: theme.spacing(2),
+  error: {
+    fontSize: '24px',
+    fontWeight: 'bold',
   },
 }));

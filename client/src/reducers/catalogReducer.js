@@ -23,6 +23,7 @@ const catalogReducer = handleActions(
     }),
     FILMS_GET_SUCCEEDED: (state, action) => ({
       ...state,
+      error: '',
       films: {
         loading: false,
         items: state.films.items ? [...state.films.items, ...action.payload] : action.payload,
@@ -30,9 +31,9 @@ const catalogReducer = handleActions(
     }),
     FILMS_GET_FAILED: (state, action) => ({
       ...state,
+      error: action.payload,
       films: {
         loading: false,
-        error: action.payload,
       },
     }),
     CATEGORIES_GET_REQUESTED: (state, action) => ({
@@ -43,6 +44,7 @@ const catalogReducer = handleActions(
     }),
     CATEGORIES_GET_SUCCEEDED: (state, action) => ({
       ...state,
+      error: '',
       categories: {
         loading: false,
         items: action.payload,
@@ -50,22 +52,21 @@ const catalogReducer = handleActions(
     }),
     CATEGORIES_GET_FAILED: (state, action) => ({
       ...state,
+      error: action.payload,
       categories: {
         loading: false,
-        error: action.payload,
       },
     }),
   },
   {
     hasMore: true,
+    error: '',
     films: {
       loading: false,
-      error: '',
       items: [],
     },
     categories: {
       loading: false,
-      error: '',
       items: [],
     },
     settings: {

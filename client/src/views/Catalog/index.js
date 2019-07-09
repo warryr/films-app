@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
 import CatalogMenu from '../CatalogMenu';
 import CatalogItems from '../CatalogItems';
 
@@ -57,13 +56,8 @@ const Catalog = props => {
     props.passSettings({ page: 1, ...newSettings });
   };
 
-  return props.categoriesError || props.filmsError ? (
-    <Container className={classes.paper}>
-      <Typography className={classes.error}>{props.categoriesError || props.filmsError}</Typography>
-      <Typography className={classes.error}>
-        <Link href='/login'>Log in</Link> properly to get valid token
-      </Typography>
-    </Container>
+  return props.error ? (
+    <Redirect to='/error' />
   ) : (
     <Container className={classes.paper}>
       <CssBaseline />
@@ -105,9 +99,8 @@ Catalog.propTypes = {
     })
   ),
   categoriesLoading: PropTypes.bool.isRequired,
-  categoriesError: PropTypes.string,
   filmsLoading: PropTypes.bool.isRequired,
-  filmsError: PropTypes.string,
+  error: PropTypes.string,
   passSettings: PropTypes.func.isRequired,
   hasMore: PropTypes.bool.isRequired,
 };

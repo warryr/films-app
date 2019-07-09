@@ -6,6 +6,7 @@ import RegisterContainer from './containers/RegisterContainer';
 import LoginContainer from './containers/LoginContainer';
 import CatalogContainer from './containers/CatalogContainer';
 import HeaderContainer from './containers/HeaderContainer';
+import ErrorContainer from './containers/ErrorContainer';
 
 function App() {
   return (
@@ -13,12 +14,14 @@ function App() {
       <Switch>
         <Route path='/register' />
         <Route path='/login' />
+        <Route path='/error' />
         <Route path='/' component={HeaderContainer} />
       </Switch>
       <Switch>
         <Route path='/register' component={RegisterContainer} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/catalog' component={CatalogContainer} />
+        <Route path='/error' component={ErrorContainer} />
         <Redirect to='/login' />
       </Switch>
     </ConnectedRouter>
