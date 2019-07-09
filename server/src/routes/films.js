@@ -18,7 +18,25 @@ router.get('/', async (req, res, next) => {
       const page = req.query.page;
 
       const searchConditions = {};
-      req.query.category ? (searchConditions.category = req.query.category) : undefined;
+
+      if (req.query.category) {
+        searchConditions.category = req.query.category;
+      }
+
+      if (req.query.search) {
+        searchConditions['$or'] = [
+          {
+            title: {
+              $regex: '.*' + req.query.search + '.*',
+            },
+          },
+          {
+            description: {
+              $regex: '.*' + req.query.search + '.*',
+            },
+          },
+        ];
+      }
 
       const sortConditions = {
         [req.query.sort]: parseInt(req.query.order),
