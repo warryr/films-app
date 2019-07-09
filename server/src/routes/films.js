@@ -17,9 +17,6 @@ router.get('/', async (req, res, next) => {
       const pageSize = 6;
       const page = req.query.page;
 
-      const collectionSize = await Film.countDocuments({});
-      const hasMore = collectionSize > pageSize * page;
-
       const searchConditions = {};
       req.query.category ? (searchConditions.category = req.query.category) : undefined;
 
@@ -27,6 +24,9 @@ router.get('/', async (req, res, next) => {
         [req.query.sort]: parseInt(req.query.order),
         _id: parseInt(req.query.order),
       };
+
+      const selectionSize = await Film.countDocuments(searchConditions);
+      const hasMore = selectionSize > pageSize * page;
 
       const docs = await Film.find(
         searchConditions,
