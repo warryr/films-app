@@ -8,18 +8,20 @@ export const useStyles = makeStyles(theme => ({
   },
   menuContainer: {
     display: 'grid',
-    gridTemplateRows: '1fr 4fr',
+    gridTemplateRows: '1fr 1fr 3fr',
     width: '220px',
     height: 'auto',
-    maxHeight: '500px',
+    maxHeight: '560px',
     margin: theme.spacing(3),
     boxShadow: '0 8px 30px 0 rgba(0,0,0,0.1)',
   },
-  menuSort: {
+  menuSearch: {
     padding: theme.spacing(1),
   },
-  menuCategories: {
-    height: 'auto',
+  searchField: {
+    width: 'auto',
+  },
+  menuSort: {
     padding: theme.spacing(1),
   },
   formControl: {
@@ -28,6 +30,10 @@ export const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  menuCategories: {
+    height: 'auto',
+    padding: theme.spacing(1),
   },
   title: {
     margin: `${theme.spacing(2)}px 0`,

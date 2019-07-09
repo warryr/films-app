@@ -12,6 +12,7 @@ const Catalog = props => {
   const classes = useStyles();
 
   const [currentPage, setPage] = useState(1);
+  const [currentSearchInput, setSearchInput] = useState('');
   const [currentCategory, setCategory] = useState('');
   const [pressedButton, setPressedButton] = useState();
   const [sortValues, setSortValues] = useState({
@@ -22,6 +23,16 @@ const Catalog = props => {
   const handleNextPage = () => {
     setPage(currentPage + 1);
     props.passSettings({ page: currentPage + 1 });
+  };
+
+  const handleInput = event => {
+    const value = event.target.value;
+
+    if (value !== currentSearchInput) {
+      handleSettings({ search: value });
+    }
+
+    setSearchInput(value);
   };
 
   const handleChange = event => {
@@ -64,6 +75,7 @@ const Catalog = props => {
           pressedButton={pressedButton}
           handleClick={handleClick}
           handleChange={handleChange}
+          handleInput={handleInput}
         />
         <CatalogItems
           films={props.films}

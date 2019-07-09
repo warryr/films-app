@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 
 const CatalogMenu = props => {
   const classes = useStyles();
@@ -17,6 +18,16 @@ const CatalogMenu = props => {
     <Typography className={classes.loading}>Loading...</Typography>
   ) : (
     <Container className={classes.menuContainer}>
+      <Container className={classes.menuSearch}>
+        <TextField
+          type='search'
+          id='search'
+          label='Search'
+          margin='normal'
+          className={classes.searchField}
+          onChange={props.handleInput}
+        />
+      </Container>
       <Container className={classes.menuSort}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor='sort'>Sort by</InputLabel>
@@ -77,6 +88,7 @@ CatalogMenu.propTypes = {
   pressedButton: PropTypes.number,
   handleClick: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
 };
 
 export default CatalogMenu;
