@@ -1,8 +1,9 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import { Strategy as JwtStrategy } from 'passport-jwt';
 
-import User, { secret } from '../models/user';
+import { passportJwtOptions } from '../config';
+import User from '../models/user';
 
 export default function() {
   passport.use(
@@ -30,13 +31,8 @@ export default function() {
     })
   );
 
-  const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: secret,
-  };
-
   passport.use(
-    new JwtStrategy(options, async (jwtPayload, done) => {
+    new JwtStrategy(passportJwtOptions, async (jwtPayload, done) => {
       try {
         const user = await User.findById(jwtPayload.id);
         if (!user) {

@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+
 import { encryptData } from '../util/encryption';
+import { secret } from '../config';
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.ObjectId,
@@ -21,8 +23,6 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-export const secret = 'qIfE-Ad6Dbviy1cxit3kUodYBwDwSk1x0aoYCg0tOPIjRJbAg_AQkdIYBGlKYb9OARLMnKAEp4ZDWqdNxHW';
 
 userSchema.pre('save', async function() {
   this.password = await encryptData(this.password);

@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
-const CONNECTION_URL =
-  'mongodb+srv://admin:ZUWg1VATjFoBcJYb@filmsapp-ev73h.mongodb.net/test?retryWrites=true&w=majority';
-const DATABASE_NAME = 'films-app-db';
+import { CONNECTION_URL, DATABASE_NAME } from '../config';
 
 export default function() {
   mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, dbName: DATABASE_NAME });
