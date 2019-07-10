@@ -13,9 +13,12 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'stretch',
     width: '100%',
     height: 'auto',
+    paddingBottom: theme.spacing(5),
   },
   card: {
-    maxWidth: '27%',
+    display: 'grid',
+    gridTemplateRows: '1fr 1fr',
+    maxWidth: '42%',
     height: 'auto',
     margin: theme.spacing(3),
     backgroundColor: theme.palette.common.white,
@@ -26,7 +29,8 @@ export const useStyles = makeStyles(theme => ({
     },
   },
   media: {
-    height: '200px',
+    height: 'auto',
+    verticalAlign: 'top',
   },
   content: {
     padding: theme.spacing(3),
