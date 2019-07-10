@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/styles';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { store, persistor } from './reducers/store';
+import { store, persistor } from './store';
 import theme from './theme';
 import './index.css';
 
