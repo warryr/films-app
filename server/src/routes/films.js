@@ -1,73 +1,9 @@
 import express from 'express';
-import passport from 'passport';
-
-import Film from '../models/film';
+import { getFilms } from '../controllers/film';
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
-  passport.authenticate('jwt', { session: false }, async (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.status(401).send('Invalid token');
-    }
-    try {
-      const pageSize = 6;
-      const page = req.query.page;
-
-      const searchConditions = {};
-
-      if (req.query.category) {
-        searchConditions.category = req.query.category;
-      }
-
-      if (req.query.search) {
-        searchConditions['$or'] = [
-          {
-            title: {
-              $regex: '.*' + req.query.search + '.*',
-            },
-          },
-          {
-            description: {
-              $regex: '.*' + req.query.search + '.*',
-            },
-          },
-        ];
-      }
-
-      const sortConditions = {
-        [req.query.sort]: parseInt(req.query.order),
-        _id: parseInt(req.query.order),
-      };
-
-      const selectionSize = await Film.countDocuments(searchConditions);
-      const hasMore = selectionSize > pageSize * page;
-
-      const docs = await Film.find(
-        searchConditions,
-        {
-          title: 1,
-          description: 1,
-          year: 1,
-          rating: 1,
-          category: 1,
-        },
-        {
-          skip: pageSize * (page - 1),
-          limit: pageSize,
-          sort: sortConditions,
-        }
-      ).populate({ path: 'category', select: 'title _id' });
-
-      res.send({ hasMore, films: docs });
-    } catch (err) {
-      next(err);
-    }
-  })(req, res, next);
-});
+router.get('/', getFilms);
 
 router.use((err, req, res, next) => {
   next(err);
