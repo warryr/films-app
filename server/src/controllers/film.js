@@ -24,11 +24,13 @@ export const getFilms = async (req, res, next) => {
           {
             title: {
               $regex: '.*' + req.query.search + '.*',
+              $options: 'i',
             },
           },
           {
             description: {
               $regex: '.*' + req.query.search + '.*',
+              $options: 'i',
             },
           },
         ];
