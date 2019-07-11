@@ -3,9 +3,9 @@ import {
   confirmPassword,
   textFieldLength,
   emailPattern,
-  validateFields,
   strictSymbols,
-} from '../../validation/validators';
+} from '../../util/validation/validators';
+import validateFields from '../../util/validation/validateFields';
 
 const getRegisterRules = user => [
   () => requiredField(user.username, 'username', strictSymbols, textFieldLength, 6),
@@ -14,10 +14,8 @@ const getRegisterRules = user => [
   () => requiredField(user.confirmPassword, 'confirmPassword', confirmPassword, user.password),
 ];
 
-const validate = (user, setValidation) => {
-  const result = validateFields(...getRegisterRules(user));
-  setValidation(result);
-  return result.valid;
+const validate = user => {
+  return validateFields(...getRegisterRules(user));
 };
 
 export default validate;

@@ -2,26 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import RegisterForm from './view';
-import { setRegisterValidation } from '../../validation/validationActions';
 import { registerUserRequested } from './registerActions';
 import validate from './validateRegister';
 
 class RegisterContainer extends React.Component {
-  handleSignUp = values => {
-    const username = values.username;
-    const email = values.email;
-    const password = values.password;
-    const confirmPassword = values.confirmPassword;
+  state = {
+    validation: {},
+  };
 
+  handleSignUp = values => {
     const user = {
-      username,
-      email,
-      password,
+      username: values.username,
+      email: values.email,
+      password: values.password,
     };
 
-    const valid = validate({ ...user, confirmPassword }, this.props.setValidation);
+    const confirmPassword = values.confirmPassword;
 
-    if (valid) {
+    this.setState({
+      validation: validate({ ...user, confirmPassword }),
+    });
+  };
+
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    if (this.state.validation.valid) {
       this.props.registerUser();
     }
   };
@@ -29,22 +33,20 @@ class RegisterContainer extends React.Component {
   render = () => (
     <RegisterForm
       onSubmit={this.handleSignUp}
-      usernameError={this.props.validationErrors.username}
-      emailError={this.props.validationErrors.email}
-      passwordError={this.props.validationErrors.password}
-      confirmError={this.props.validationErrors.confirmPassword}
+      usernameError={this.state.validation.errors.username}
+      emailError={this.state.validation.errors.email}
+      passwordError={this.state.validation.errors.password}
+      confirmError={this.state.validation.errors.confirmPassword}
       registerErrors={this.props.registerErrors}
     />
   );
 }
 
 const mapStateToProps = state => ({
-  validationErrors: state.validation.registerValidation.errors || {},
   registerErrors: state.register.errors,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setValidation: validation => dispatch(setRegisterValidation(validation)),
   registerUser: () => dispatch(registerUserRequested()),
 });
 

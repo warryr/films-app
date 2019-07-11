@@ -2,23 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LoginForm from './view';
-import { setLoginValidation } from '../../validation/validationActions';
 import { loginUserRequested } from './loginActions';
 import validate from './validateLogin';
 
 class LoginContainer extends React.Component {
-  handleLogIn = values => {
-    const username = values.username;
-    const password = values.password;
+  state = {
+    validation: {},
+  };
 
+  handleLogIn = values => {
     const user = {
-      username,
-      password,
+      username: values.username,
+      password: values.password,
     };
 
-    const valid = validate(user, this.props.setValidation);
+    this.setState({
+      validation: validate(user),
+    });
+  };
 
-    if (valid) {
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    if (this.state.validation.valid) {
       this.props.loginUser();
     }
   };
@@ -26,20 +30,18 @@ class LoginContainer extends React.Component {
   render = () => (
     <LoginForm
       onSubmit={this.handleLogIn}
-      usernameError={this.props.validationErrors.username}
-      passwordError={this.props.validationErrors.password}
+      usernameError={this.state.validation.errors.username}
+      passwordError={this.state.validation.errors.password}
       loginErrors={this.props.loginErrors}
     />
   );
 }
 
 const mapStateToProps = state => ({
-  validationErrors: state.validation.loginValidation.errors || {},
   loginErrors: state.login.errors,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setValidation: validation => dispatch(setLoginValidation(validation)),
   loginUser: () => dispatch(loginUserRequested()),
 });
 
