@@ -22,7 +22,7 @@ class RegisterContainer extends React.Component {
     const valid = validate({ ...user, confirmPassword }, this.props.setValidation);
 
     if (valid) {
-      this.props.registerUser(user);
+      this.props.registerUser();
     }
   };
 
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setValidation: validation => dispatch(setRegisterValidation(validation)),
-  registerUser: user => dispatch(registerUserRequested(user)),
+  registerUser: () => dispatch(registerUserRequested()),
 });
 
 export default connect(

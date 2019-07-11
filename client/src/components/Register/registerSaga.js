@@ -1,20 +1,24 @@
 import React from 'react';
 import axios from 'axios/index';
-import { call, put, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
+import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { history } from '../../redux/store';
 import { registerUserSucceeded, registerUserFailed } from './registerActions';
+
+const getUser = state => state.form.registerForm.values;
 
 function* registerWatcher() {
   yield takeLatest('USER_REGISTER_REQUESTED', registerFlow);
 }
 
 function* registerFlow(action) {
+  const user = yield select(getUser);
+
   try {
     const response = yield call(axios, '/api/users/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      data: action.payload,
+      data: user,
     });
     yield put(registerUserSucceeded({ username: response.data.username, email: response.data.email }));
     yield call(history.push, '/login');

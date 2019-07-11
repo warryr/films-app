@@ -3,20 +3,18 @@ import { handleActions } from 'redux-actions';
 const registerReducer = handleActions(
   {
     USER_REGISTER_REQUESTED: (state, action) => ({
-      ...state.validation,
-      user: action.payload,
+      processing: true,
     }),
     USER_REGISTER_SUCCEEDED: (state, action) => ({
-      ...state.validation,
-      user: action.payload,
+      processing: false,
     }),
     USER_REGISTER_FAILED: (state, action) => ({
-      ...state.validation,
+      processing: false,
       errors: [...action.payload],
     }),
   },
   {
-    user: {},
+    processing: false,
     errors: [],
   }
 );

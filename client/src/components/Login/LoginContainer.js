@@ -19,7 +19,7 @@ class LoginContainer extends React.Component {
     const valid = validate(user, this.props.setValidation);
 
     if (valid) {
-      this.props.loginUser(user);
+      this.props.loginUser();
     }
   };
 
@@ -40,7 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setValidation: validation => dispatch(setLoginValidation(validation)),
-  loginUser: user => dispatch(loginUserRequested(user)),
+  loginUser: () => dispatch(loginUserRequested()),
 });
 
 export default connect(

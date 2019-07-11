@@ -3,16 +3,18 @@ import { handleActions } from 'redux-actions';
 const loginReducer = handleActions(
   {
     USER_LOGIN_REQUESTED: (state, action) => ({
-      ...state.validation,
-      user: action.payload,
+      processing: true,
+    }),
+    USER_LOGIN_SUCCEEDED: (state, action) => ({
+      processing: false,
     }),
     USER_LOGIN_FAILED: (state, action) => ({
-      ...state.validation,
+      processing: false,
       errors: [...action.payload],
     }),
   },
   {
-    user: {},
+    processing: false,
     errors: [],
   }
 );
