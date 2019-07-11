@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Catalog from './view';
 import { getFilmsRequested, cleanFilms } from '../CatalogItems/itemsActions';
 import { getCategoriesRequested } from '../CatalogMenu/categoriesActions';
-import { updateCatalogSettings } from '../Catalog/settingsActions';
+import { updateCatalogSettings } from './settingsActions';
 
 class CatalogContainer extends React.Component {
   state = {

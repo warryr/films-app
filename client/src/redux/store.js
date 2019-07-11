@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage/index';
+import storage from 'redux-persist/lib/storage';
 
 import RootSaga from './rootSaga';
 import createRootReducer from './rootReducer';

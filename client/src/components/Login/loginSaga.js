@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios/index';
 import { call, put, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
-import { history } from '../store';
+import { history } from '../../redux/store';
 import { setCurrentUser } from './accountActions';
 import { loginUserFailed } from './loginActions';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container/index';
-import CssBaseline from '@material-ui/core/CssBaseline/index';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { useStyles } from './styles';
 import CatalogMenuContainer from '../../CatalogMenu/CatalogMenuContainer';

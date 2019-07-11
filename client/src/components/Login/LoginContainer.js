@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LoginForm from './view';
-import { setLoginValidation } from '../validation/validationActions';
+import { setLoginValidation } from '../../validation/validationActions';
 import { loginUserRequested } from './loginActions';
 import validate from './validateLogin';
 

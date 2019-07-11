@@ -2,12 +2,12 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
-import { history } from './store';
-import RegisterContainer from './Register/RegisterContainer';
-import LoginContainer from './Login/LoginContainer';
-import CatalogContainer from './Catalog/CatalogContainer';
-import HeaderContainer from './Header/HeaderContainer';
-import ErrorContainer from './Error/ErrorContainer';
+import { history } from './redux/store';
+import RegisterContainer from './components/Register/RegisterContainer';
+import LoginContainer from './components/Login/LoginContainer';
+import CatalogContainer from './components/Catalog/CatalogContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
+import ErrorContainer from './components/Error/ErrorContainer';
 
 function App() {
   return (

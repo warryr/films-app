@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from './view';
 import { unsetCurrentUser } from '../Login/accountActions';
-import { history } from '../store';
+import { history } from '../../redux/store';
 
 class HeaderContainer extends React.Component {
   handleLogOut = () => {
