@@ -4,8 +4,10 @@ const validationReducer = handleActions(
   {
     REGISTER_VALIDATION_SET: (state, action) => ({
       registerValidation: action.payload,
+      loginValidation: {},
     }),
     LOGIN_VALIDATION_SET: (state, action) => ({
+      registerValidation: {},
       loginValidation: action.payload,
     }),
   },
