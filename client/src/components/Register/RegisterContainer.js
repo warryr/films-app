@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import RegisterForm from './view';
-import { setRegisterValidation } from '../Validation/validationActions';
+import { setRegisterValidation } from '../validation/validationActions';
 import { registerUserRequested } from './registerActions';
 import validate from './validateRegister';
 

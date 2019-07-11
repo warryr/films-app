@@ -5,7 +5,7 @@ import {
   emailPattern,
   validateFields,
   strictSymbols,
-} from '../Validation/validators';
+} from '../validation/validators';
 
 const getRegisterRules = user => [
   () => requiredField(user.username, 'username', strictSymbols, textFieldLength, 6),

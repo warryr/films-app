@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { reducer as formReducer } from 'redux-form';
 
-import validationReducer from './Validation/validationReducer';
+import validationReducer from './validation/validationReducer';
 import registerReducer from './Register/registerReducer';
 import loginReducer from './Login/loginReducer';
 import accountReducer from './Login/accountReducer';
