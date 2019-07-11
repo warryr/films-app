@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { CONNECTION_URL, DATABASE_NAME } from '../config';
+import { CONNECTION_URL, DATABASE_NAME } from './config';
 
 export default function() {
   mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, dbName: DATABASE_NAME });

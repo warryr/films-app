@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import connectToMongoose from './models/db';
-import configurePassport from './middleware/authentication';
+import configurePassport from './middleware/passport';
 
 import indexRouter from './routes';
 import usersRouter from './routes/users';

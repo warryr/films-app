@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 
 import { encryptData } from '../util/encryption';
-import { secret } from '../config';
+import { secret } from '../middleware/passport/config';
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.SchemaTypes.ObjectId,
