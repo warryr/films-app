@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider/index';
 import Typography from '@material-ui/core/Typography/index';
 
 import { useStyles } from './styles';
-import { ReactComponent as Star } from '../../Catalog/images/star-solid.svg';
+import { ReactComponent as Star } from '../../../static/images/star-solid.svg';
 
 const CatalogItems = props => {
   const classes = useStyles();

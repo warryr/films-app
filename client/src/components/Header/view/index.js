@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar/index';
 import Typography from '@material-ui/core/Typography/index';
 
 import { useStyles } from './styles';
-import { ReactComponent as Avatar } from '../images/user-solid.svg';
+import { ReactComponent as Avatar } from '../../../static/images/user-solid.svg';
 
 const Header = props => {
   const classes = useStyles();
