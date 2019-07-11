@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Catalog from './view';
-import { getFilmsRequested, cleanFilms } from '../CatalogItems/filmsActions';
-import { getCategoriesRequested } from '../CatalogMenu/categoriesActions';
-import { updateCatalogSettings } from './settingsActions';
+import Catalog from '../view';
+import { getFilmsRequested, cleanFilms } from '../../CatalogItems/actions/filmsActions';
+import { getCategoriesRequested } from '../../CatalogMenu/actions/categoriesActions';
+import { updateCatalogSettings } from '../actions/settingsActions';
 
 class CatalogContainer extends React.Component {
   state = {

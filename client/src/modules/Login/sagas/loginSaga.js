@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios/index';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
-import { history } from '../../redux/store';
-import { setCurrentUser } from './accountActions';
-import { loginUserSucceeded, loginUserFailed } from './loginActions';
+import { history } from '../../../redux/store';
+import { setCurrentUser } from '../actions/accountActions';
+import { loginUserSucceeded, loginUserFailed } from '../actions/loginActions';
 
 const getUser = state => state.form.loginForm.values;
 

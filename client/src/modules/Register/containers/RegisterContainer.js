@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import RegisterForm from './view';
-import { registerUserRequested } from './registerActions';
-import validate from './validate';
+import RegisterForm from '../view';
+import { registerUserRequested } from '../actions/registerActions';
+import validate from '../util/validate';
 
 class RegisterContainer extends React.Component {
   state = {

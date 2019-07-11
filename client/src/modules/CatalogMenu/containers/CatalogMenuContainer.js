@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import CatalogMenu from './view';
+import CatalogMenu from '../view';
 
 class CatalogMenuContainer extends React.Component {
   state = {

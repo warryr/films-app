@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LoginForm from './view';
-import { loginUserRequested } from './loginActions';
-import validate from './validate';
+import LoginForm from '../view';
+import { loginUserRequested } from '../actions/loginActions';
+import validate from '../util/validate';
 
 class LoginContainer extends React.Component {
   state = {

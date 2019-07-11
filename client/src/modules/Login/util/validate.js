@@ -1,5 +1,5 @@
-import { requiredField, textFieldLength } from '../../util/validation/validators';
-import validateFields from '../../util/validation/validateFields';
+import { requiredField, textFieldLength } from '../../../util/validation/validators';
+import validateFields from '../../../util/validation/validateFields';
 
 const getLoginRules = user => [
   () => requiredField(user.username, 'username', textFieldLength, 6),
