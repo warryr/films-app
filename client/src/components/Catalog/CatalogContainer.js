@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Catalog from './view';
-import { getFilmsRequested, cleanFilms } from '../CatalogItems/itemsActions';
+import { getFilmsRequested, cleanFilms } from '../CatalogItems/filmsActions';
 import { getCategoriesRequested } from '../CatalogMenu/categoriesActions';
 import { updateCatalogSettings } from './settingsActions';
 
