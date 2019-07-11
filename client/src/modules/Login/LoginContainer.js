@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 
 import LoginForm from './view';
 import { loginUserRequested } from './loginActions';
-import validate from './validateLogin';
+import validate from './validate';
 
 class LoginContainer extends React.Component {
   state = {
-    validation: {},
+    validation: {
+      valid: false,
+      errors: {},
+    },
   };
 
   handleLogIn = values => {
@@ -16,15 +19,16 @@ class LoginContainer extends React.Component {
       password: values.password,
     };
 
-    this.setState({
-      validation: validate(user),
-    });
-  };
-
-  componentDidUpdate = (prevProps, prevState, snapshot) => {
-    if (this.state.validation.valid) {
-      this.props.loginUser();
-    }
+    this.setState(
+      {
+        validation: validate(user),
+      },
+      () => {
+        if (this.state.validation.valid) {
+          this.props.loginUser();
+        }
+      }
+    );
   };
 
   render = () => (

@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 
 import RegisterForm from './view';
 import { registerUserRequested } from './registerActions';
-import validate from './validateRegister';
+import validate from './validate';
 
 class RegisterContainer extends React.Component {
   state = {
-    validation: {},
+    validation: {
+      valid: false,
+      errors: {},
+    },
   };
 
   handleSignUp = values => {
@@ -19,15 +22,16 @@ class RegisterContainer extends React.Component {
 
     const confirmPassword = values.confirmPassword;
 
-    this.setState({
-      validation: validate({ ...user, confirmPassword }),
-    });
-  };
-
-  componentDidUpdate = (prevProps, prevState, snapshot) => {
-    if (this.state.validation.valid) {
-      this.props.registerUser();
-    }
+    this.setState(
+      {
+        validation: validate({ ...user, confirmPassword }),
+      },
+      () => {
+        if (this.state.validation.valid) {
+          this.props.registerUser();
+        }
+      }
+    );
   };
 
   render = () => (
