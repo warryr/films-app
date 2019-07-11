@@ -3,11 +3,11 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { history } from './redux/store';
-import RegisterContainer from './components/Register/RegisterContainer';
-import LoginContainer from './components/Login/LoginContainer';
-import CatalogContainer from './components/Catalog/CatalogContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import ErrorContainer from './components/Error/ErrorContainer';
+import RegisterContainer from './modules/Register/RegisterContainer';
+import LoginContainer from './modules/Login/LoginContainer';
+import CatalogContainer from './modules/Catalog/CatalogContainer';
+import HeaderContainer from './modules/Header/HeaderContainer';
+import ErrorContainer from './modules/Error/ErrorContainer';
 
 function App() {
   return (
