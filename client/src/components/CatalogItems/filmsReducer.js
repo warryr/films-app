@@ -16,13 +16,11 @@ const itemsReducer = handleActions(
     FILMS_GET_REQUESTED: (state, action) => ({
       ...state,
       loading: true,
-      error: '',
       items: state.items || [],
     }),
     FILMS_GET_SUCCEEDED: (state, action) => ({
       ...state,
       loading: false,
-      error: '',
       items: state.items ? [...state.items, ...action.payload] : action.payload,
     }),
     FILMS_GET_FAILED: (state, action) => ({
