@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container';
+import Container from '@material-ui/core/Container/index';
 
 import { useStyles } from './styles';
-import { ProtectedLayout } from '../../../layouts';
-import CatalogMenuContainer from '../../CatalogMenu/containers/CatalogMenuContainer';
-import CatalogItemsContainer from '../../CatalogItems/containers/CatalogItemsContainer';
+import { ProtectedLayout } from '../../../../layouts';
+import CatalogMenuContainer from '../../containers/CatalogMenuContainer';
+import CatalogItemsContainer from '../../containers/CatalogItemsContainer';
 
 const Catalog = props => {
   const classes = useStyles();

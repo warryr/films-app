@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import categoriesReducer from '../../CatalogMenu/reducers';
-import filmsReducer from '../../CatalogItems/reducers';
+import categoriesReducer from './categoriesReducers';
+import filmsReducer from './filmsReducers';
 import settingsReducer from './settingsReducer';
 
 export default combineReducers({

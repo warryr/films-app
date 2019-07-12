@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import CatalogItems from '../view';
+import CatalogItems from '../views/CatalogItems';
 
 class CatalogItemsContainer extends React.Component {
   render = () => {

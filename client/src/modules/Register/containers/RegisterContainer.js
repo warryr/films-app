@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import RegisterForm from '../view';
+import RegisterForm from '../views';
 import { registerUserRequested } from '../actions';
 import validate from '../util/validate';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../view';
+import Header from '../views';
 import { unsetCurrentUser } from '../../Account/actions';
 import { history } from '../../../redux/store';
 
