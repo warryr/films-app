@@ -1,12 +1,11 @@
 import React from 'react';
-import HeaderContainer from '../modules/Header/containers';
+import HeaderContainer from '../modules/Header/containers/HeaderContainer';
 
 const ProtectedLayout = props => {
-  const Content = props.content;
   return (
     <React.Fragment>
       <HeaderContainer />
-      <Content />
+      {props.children}
     </React.Fragment>
   );
 };

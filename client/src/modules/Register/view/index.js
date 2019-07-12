@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar/index';
 import Button from '@material-ui/core/Button/index';
 import Container from '@material-ui/core/Container/index';
-import CssBaseline from '@material-ui/core/CssBaseline/index';
 import Grid from '@material-ui/core/Grid/index';
 import Link from '@material-ui/core/Link/index';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -12,6 +11,7 @@ import TextField from '@material-ui/core/TextField/index';
 import Typography from '@material-ui/core/Typography/index';
 
 import { useStyles } from './styles';
+import { PublicLayout } from '../../../layouts';
 
 const renderTextField = ({ input, ...custom }) => {
   return <TextField variant='outlined' margin='normal' {...input} {...custom} required fullWidth />;
@@ -20,9 +20,8 @@ const renderTextField = ({ input, ...custom }) => {
 const Register = props => {
   const classes = useStyles();
   return (
-    <Container>
-      <CssBaseline />
-      <div className={classes.paper}>
+    <PublicLayout>
+      <Container className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -89,8 +88,8 @@ const Register = props => {
             </Grid>
           </Grid>
         </form>
-      </div>
-    </Container>
+      </Container>
+    </PublicLayout>
   );
 };
 

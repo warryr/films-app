@@ -2,11 +2,11 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { useStyles } from './styles';
-import CatalogMenuContainer from '../../CatalogMenu/containers';
-import CatalogItemsContainer from '../../CatalogItems/containers';
+import { ProtectedLayout } from '../../../layouts';
+import CatalogMenuContainer from '../../CatalogMenu/containers/CatalogMenuContainer';
+import CatalogItemsContainer from '../../CatalogItems/containers/CatalogItemsContainer';
 
 const Catalog = props => {
   const classes = useStyles();
@@ -14,13 +14,14 @@ const Catalog = props => {
   return props.error ? (
     <Redirect to='/error' />
   ) : (
-    <Container className={classes.paper}>
-      <CssBaseline />
-      <Container className={classes.container}>
-        <CatalogMenuContainer handleSettings={props.handleSettings} />
-        <CatalogItemsContainer handleNextPage={props.handleNextPage} />
+    <ProtectedLayout>
+      <Container className={classes.paper}>
+        <Container className={classes.container}>
+          <CatalogMenuContainer handleSettings={props.handleSettings} />
+          <CatalogItemsContainer handleNextPage={props.handleNextPage} />
+        </Container>
       </Container>
-    </Container>
+    </ProtectedLayout>
   );
 };
 

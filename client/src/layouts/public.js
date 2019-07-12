@@ -1,8 +1,7 @@
 import React from 'react';
 
 const PublicLayout = props => {
-  const Content = props.content;
-  return <Content />;
+  return props.children;
 };
 
 export default PublicLayout;

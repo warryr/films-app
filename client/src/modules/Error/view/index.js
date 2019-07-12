@@ -5,20 +5,23 @@ import Link from '@material-ui/core/Link/index';
 import Typography from '@material-ui/core/Typography/index';
 
 import { useStyles } from './styles';
+import { PublicLayout } from '../../../layouts';
 
 const Error = props => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.paper}>
-      {props.message === 'Invalid token' ? (
-        <Typography className={classes.error}>
-          <Link href='/login'>Log in</Link> properly to observe this page
-        </Typography>
-      ) : (
-        <Typography className={classes.error}>{props.message}</Typography>
-      )}
-    </Container>
+    <PublicLayout>
+      <Container className={classes.paper}>
+        {props.message === 'Invalid token' ? (
+          <Typography className={classes.error}>
+            <Link href='/login'>Log in</Link> properly to observe this page
+          </Typography>
+        ) : (
+          <Typography className={classes.error}>{props.message}</Typography>
+        )}
+      </Container>
+    </PublicLayout>
   );
 };
 
