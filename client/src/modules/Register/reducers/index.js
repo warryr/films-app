@@ -1,14 +1,14 @@
 import { handleActions } from 'redux-actions';
 
-const loginReducer = handleActions(
+export default handleActions(
   {
-    USER_LOGIN_REQUESTED: (state, action) => ({
+    USER_REGISTER_REQUESTED: (state, action) => ({
       processing: true,
     }),
-    USER_LOGIN_SUCCEEDED: (state, action) => ({
+    USER_REGISTER_SUCCEEDED: (state, action) => ({
       processing: false,
     }),
-    USER_LOGIN_FAILED: (state, action) => ({
+    USER_REGISTER_FAILED: (state, action) => ({
       processing: false,
       errors: [...action.payload],
     }),
@@ -18,5 +18,3 @@ const loginReducer = handleActions(
     errors: [],
   }
 );
-
-export default loginReducer;

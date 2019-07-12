@@ -1,9 +1,9 @@
 import { all } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
-import RegisterSaga from '../modules/Register/sagas/registerSaga';
-import LoginSaga from '../modules/Login/sagas/loginSaga';
-import FilmsSaga from '../modules/CatalogItems/sagas/filmsSaga';
-import CategoriesSaga from '../modules/CatalogMenu/sagas/categoriesSaga';
+import RegisterSaga from '../modules/Register/sagas';
+import LoginSaga from '../modules/Login/sagas';
+import FilmsSaga from '../modules/CatalogItems/sagas';
+import CategoriesSaga from '../modules/CatalogMenu/sagas';
 
 const sagas = [RegisterSaga(), LoginSaga(), CategoriesSaga(), FilmsSaga()];
 

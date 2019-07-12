@@ -5,8 +5,8 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { useStyles } from './styles';
-import CatalogMenuContainer from '../../CatalogMenu/containers/CatalogMenuContainer';
-import CatalogItemsContainer from '../../CatalogItems/containers/CatalogItemsContainer';
+import CatalogMenuContainer from '../../CatalogMenu/containers';
+import CatalogItemsContainer from '../../CatalogItems/containers';
 
 const Catalog = props => {
   const classes = useStyles();

@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios/index';
+import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
-import { getCategoriesSucceeded, getCategoriesFailed } from '../actions/categoriesActions';
+import { getCategoriesSucceeded, getCategoriesFailed } from '../actions';
 
 const getToken = state => state.account.token;
 

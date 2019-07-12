@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios/index';
+import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
 import { history } from '../../../redux/store';
-import { registerUserSucceeded, registerUserFailed } from '../actions/registerActions';
+import { registerUserSucceeded, registerUserFailed } from '../actions';
 
 const getUser = state => state.form.registerForm.values;
 

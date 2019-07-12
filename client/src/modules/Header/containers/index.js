@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../view';
-import { unsetCurrentUser } from '../../Login/actions/accountActions';
+import { unsetCurrentUser } from '../../Account/actions';
 import { history } from '../../../redux/store';
 
 class HeaderContainer extends React.Component {

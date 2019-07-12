@@ -6,7 +6,7 @@ const defaultState = {
   token: '',
 };
 
-const accountReducer = handleActions(
+export default handleActions(
   {
     CURRENT_USER_SET: (state, action) => ({
       username: action.payload.username,
@@ -17,5 +17,3 @@ const accountReducer = handleActions(
   },
   defaultState
 );
-
-export default accountReducer;

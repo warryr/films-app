@@ -6,8 +6,6 @@ const getLoginRules = user => [
   () => requiredField(user.password, 'password', textFieldLength, 6),
 ];
 
-const validate = user => {
+export default user => {
   return validateFields(...getLoginRules(user));
 };
-
-export default validate;

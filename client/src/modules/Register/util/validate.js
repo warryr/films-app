@@ -14,8 +14,6 @@ const getRegisterRules = user => [
   () => requiredField(user.confirmPassword, 'confirmPassword', confirmPassword, user.password),
 ];
 
-const validate = user => {
+export default user => {
   return validateFields(...getRegisterRules(user));
 };
-
-export default validate;

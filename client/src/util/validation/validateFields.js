@@ -1,4 +1,4 @@
-const validateFields = (...validators) => {
+export default (...validators) => {
   return validators.reduce(
     (value, current) => {
       const result = current();
@@ -11,5 +11,3 @@ const validateFields = (...validators) => {
     { valid: true, errors: {} }
   );
 };
-
-export default validateFields;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import RegisterForm from '../view';
-import { registerUserRequested } from '../actions/registerActions';
+import LoginForm from '../view';
+import { loginUserRequested } from '../actions';
 import validate from '../util/validate';
 
-class RegisterContainer extends React.Component {
+class LoginContainer extends React.Component {
   state = {
     validation: {
       valid: false,
@@ -13,48 +13,43 @@ class RegisterContainer extends React.Component {
     },
   };
 
-  handleSignUp = values => {
+  handleLogIn = values => {
     const user = {
       username: values.username,
-      email: values.email,
       password: values.password,
     };
 
-    const confirmPassword = values.confirmPassword;
-
     this.setState(
       {
-        validation: validate({ ...user, confirmPassword }),
+        validation: validate(user),
       },
       () => {
         if (this.state.validation.valid) {
-          this.props.registerUser();
+          this.props.loginUser();
         }
       }
     );
   };
 
   render = () => (
-    <RegisterForm
-      onSubmit={this.handleSignUp}
+    <LoginForm
+      onSubmit={this.handleLogIn}
       usernameError={this.state.validation.errors.username}
-      emailError={this.state.validation.errors.email}
       passwordError={this.state.validation.errors.password}
-      confirmError={this.state.validation.errors.confirmPassword}
-      registerErrors={this.props.registerErrors}
+      loginErrors={this.props.loginErrors}
     />
   );
 }
 
 const mapStateToProps = state => ({
-  registerErrors: state.register.errors,
+  loginErrors: state.login.errors,
 });
 
 const mapDispatchToProps = dispatch => ({
-  registerUser: () => dispatch(registerUserRequested()),
+  loginUser: () => dispatch(loginUserRequested()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterContainer);
+)(LoginContainer);
