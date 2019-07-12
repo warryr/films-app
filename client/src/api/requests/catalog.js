@@ -3,7 +3,7 @@ import service from '../service';
 const getCategories = async token => {
   return await service.get('/categories', {
     headers: {
-      Authorization: token ? `Bearer ${token}` : undefined,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
@@ -11,7 +11,7 @@ const getCategories = async token => {
 const getFilms = async (token, query) => {
   return await service.get(`/films${query}`, {
     headers: {
-      Authorization: token ? `Bearer ${token}` : undefined,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
