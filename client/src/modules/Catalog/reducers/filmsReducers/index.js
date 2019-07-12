@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux/index';
+import { combineReducers } from 'redux';
 
 import loadingReducer from './loadingReducer';
 import itemsReducer from './itemsReducer';
