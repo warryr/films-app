@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
+import { catalog } from '../../../api/requests';
 import { getFilmsSucceeded, getFilmsFailed, updateHasMore } from '../actions';
 
 const getToken = state => state.account.token;
@@ -22,13 +22,7 @@ function* filmsFlow(action) {
     }
     query = query.slice(0, -1);
 
-    const response = yield call(axios, `/api/films${query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = yield call(catalog.getFilms, token, query);
     yield put(getFilmsSucceeded(response.data.films));
     yield put(updateHasMore(response.data.hasMore));
   } catch (err) {

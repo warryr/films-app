@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
+import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
 import { registerUserSucceeded, registerUserFailed } from '../actions';
 
@@ -15,11 +15,7 @@ function* registerFlow(action) {
   const user = yield select(getUser);
 
   try {
-    const response = yield call(axios, '/api/users/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      data: user,
-    });
+    const response = yield call(auth.register, user);
     yield put(registerUserSucceeded({ username: response.data.username, email: response.data.email }));
     yield call(history.push, '/login');
   } catch (err) {

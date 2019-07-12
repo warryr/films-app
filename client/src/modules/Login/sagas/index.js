@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { call, put, select, takeLatest } from 'redux-saga/dist/redux-saga-effects-npm-proxy.esm';
 
+import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
 import { setCurrentUser } from '../../Account/actions';
 import { loginUserSucceeded, loginUserFailed } from '../actions';
@@ -16,11 +16,7 @@ function* loginFlow(action) {
   const user = yield select(getUser);
 
   try {
-    const response = yield call(axios, '/api/users/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      data: user,
-    });
+    const response = yield call(auth.login, user);
     yield put(loginUserSucceeded());
     yield put(
       setCurrentUser({ username: response.data.username, email: response.data.email, token: response.data.token })
