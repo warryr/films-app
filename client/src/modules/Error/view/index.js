@@ -11,12 +11,13 @@ const Error = props => {
 
   return (
     <Container className={classes.paper}>
-      <Typography className={classes.error}>{props.message}</Typography>
       {props.message === 'Invalid token' ? (
         <Typography className={classes.error}>
-          <Link href='/login'>Log in</Link> properly to get valid token
+          <Link href='/login'>Log in</Link> properly to observe this page
         </Typography>
-      ) : null}
+      ) : (
+        <Typography className={classes.error}>{props.message}</Typography>
+      )}
     </Container>
   );
 };
