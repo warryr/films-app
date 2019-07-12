@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Error from '../views';
 
-class HeaderContainer extends React.Component {
+class HeaderContainer extends PureComponent {
   render = () => {
     return <Error message={this.props.loadingError} />;
   };

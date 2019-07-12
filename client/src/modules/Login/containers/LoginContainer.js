@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import LoginForm from '../views';
 import { loginUserRequested } from '../actions';
 import validate from '../util/validate';
 
-class LoginContainer extends React.Component {
+class LoginContainer extends PureComponent {
   state = {
     validation: {
       valid: false,

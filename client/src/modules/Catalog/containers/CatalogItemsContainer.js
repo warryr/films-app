@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CatalogItems from '../views/CatalogItems';
 
-class CatalogItemsContainer extends React.Component {
+class CatalogItemsContainer extends PureComponent {
   render = () => {
     return (
       <CatalogItems

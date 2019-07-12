@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Catalog from '../views/Catalog';
 import { getCategoriesRequested, getFilmsRequested, cleanFilms, updateCatalogSettings } from '../actions';
 
-class CatalogContainer extends React.Component {
+class CatalogContainer extends PureComponent {
   state = {
     currentPage: 1,
   };

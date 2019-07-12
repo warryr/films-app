@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CatalogMenu from '../views/CatalogMenu';
 
-class CatalogMenuContainer extends React.Component {
+class CatalogMenuContainer extends PureComponent {
   state = {
     currentSearchInput: '',
     currentCategory: '',

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../views';
 import { unsetCurrentUser } from '../../Account/actions';
 import { history } from '../../../redux/store';
 
-class HeaderContainer extends React.Component {
+class HeaderContainer extends PureComponent {
   handleLogOut = () => {
     this.props.logoutUser();
     history.push('/login');

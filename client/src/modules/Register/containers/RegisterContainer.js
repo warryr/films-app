@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import RegisterForm from '../views';
 import { registerUserRequested } from '../actions';
 import validate from '../util/validate';
 
-class RegisterContainer extends React.Component {
+class RegisterContainer extends PureComponent {
   state = {
     validation: {
       valid: false,
