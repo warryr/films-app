@@ -28,7 +28,7 @@ class RegisterContainer extends PureComponent {
       },
       () => {
         if (this.state.validation.valid) {
-          this.props.registerUser();
+          this.props.registerUser(user);
         }
       }
     );
@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  registerUser: () => dispatch(registerUserRequested()),
+  registerUser: user => dispatch(registerUserRequested(user)),
 });
 
 export default connect(

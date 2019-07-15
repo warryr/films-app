@@ -5,7 +5,6 @@ import { catalog } from '../../../api/requests';
 import { getFilmsSucceeded, getFilmsFailed, updateHasMore } from '../actions';
 
 const getToken = state => state.account.token;
-const getSettings = state => state.catalog.settings;
 
 function* filmsWatcher() {
   yield takeLatest('FILMS_GET_REQUESTED', filmsFlow);
@@ -14,7 +13,7 @@ function* filmsWatcher() {
 function* filmsFlow(action) {
   try {
     const token = yield select(getToken);
-    const settings = yield select(getSettings);
+    const settings = action.payload;
 
     let query = '?';
     for (let key in settings) {

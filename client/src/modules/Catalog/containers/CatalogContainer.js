@@ -24,12 +24,12 @@ class CatalogContainer extends PureComponent {
 
   componentDidMount = () => {
     this.props.getCategories();
-    this.props.getFilms();
+    this.props.getFilms(this.props.settings);
   };
 
   componentDidUpdate = (prevProps, prevState, snapshot) => {
     if (prevProps.settings !== this.props.settings) {
-      this.props.getFilms();
+      this.props.getFilms(this.props.settings);
     }
   };
 
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(getCategoriesRequested()),
-  getFilms: () => dispatch(getFilmsRequested()),
+  getFilms: settings => dispatch(getFilmsRequested(settings)),
   updateSettings: settings => dispatch(updateCatalogSettings(settings)),
   cleanFilms: () => dispatch(cleanFilms()),
 });

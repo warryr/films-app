@@ -5,17 +5,13 @@ import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
 import { loginUserSucceeded, loginUserFailed } from '../actions';
 
-const getUser = state => state.form.loginForm.values;
-
 function* loginWatcher() {
   yield takeLatest('USER_LOGIN_REQUESTED', loginFlow);
 }
 
 function* loginFlow(action) {
-  const user = yield select(getUser);
-
   try {
-    const response = yield call(auth.login, user);
+    const response = yield call(auth.login, action.payload);
     yield put(
       loginUserSucceeded({
         username: response.data.username,

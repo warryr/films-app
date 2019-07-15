@@ -5,17 +5,13 @@ import { auth } from '../../../api/requests';
 import { history } from '../../../redux/store';
 import { registerUserSucceeded, registerUserFailed } from '../actions';
 
-const getUser = state => state.form.registerForm.values;
-
 function* registerWatcher() {
   yield takeLatest('USER_REGISTER_REQUESTED', registerFlow);
 }
 
 function* registerFlow(action) {
-  const user = yield select(getUser);
-
   try {
-    const response = yield call(auth.register, user);
+    const response = yield call(auth.register, action.payload);
     yield put(registerUserSucceeded({ username: response.data.username, email: response.data.email }));
     yield call(history.push, '/login');
   } catch (err) {

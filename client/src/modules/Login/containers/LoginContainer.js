@@ -25,7 +25,7 @@ class LoginContainer extends PureComponent {
       },
       () => {
         if (this.state.validation.valid) {
-          this.props.loginUser();
+          this.props.loginUser(user);
         }
       }
     );
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginUser: () => dispatch(loginUserRequested()),
+  loginUser: user => dispatch(loginUserRequested(user)),
 });
 
 export default connect(
