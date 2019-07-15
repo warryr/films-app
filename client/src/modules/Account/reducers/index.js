@@ -8,7 +8,7 @@ const defaultState = {
 
 export default handleActions(
   {
-    CURRENT_USER_SET: (state, action) => ({
+    USER_LOGIN_SUCCEEDED: (state, action) => ({
       username: action.payload.username,
       email: action.payload.email,
       token: action.payload.token,
